@@ -1,7 +1,7 @@
 package model
 
 type Dato struct {
-	Id     int     `json:"id,omitempty"`
+	Id     int     `gorm:"primary_key"`
 	Entero int     `json:"entero"`
 	Real   float32 `json:"real"`
 	Cadena string  `json:"cadena"`

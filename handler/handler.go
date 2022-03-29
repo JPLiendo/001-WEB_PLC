@@ -12,14 +12,14 @@ func Router() *mux.Router {
 	//mux
 	var mux = mux.NewRouter()
 	//Handler GetUsers
-	mux.HandleFunc("/user", c.GetUsers).Methods(http.MethodGet)
+	//mux.HandleFunc("/user", c.GetUsers).Methods(http.MethodGet)
 	//Handler GetUser
 	mux.HandleFunc("/user/{id:[0-9]+}", c.GetUser).Methods(http.MethodGet)
 	//Handler CreateUser
-	mux.HandleFunc("/user", c.CreateUser).Methods(http.MethodPost)
+	//mux.HandleFunc("/user", c.CreateUser).Methods(http.MethodPost)
 	//Handler UpdateUser
-	mux.HandleFunc("/user/{id:[0-9]+}", c.UpdateUser).Methods(http.MethodPut)
+	//mux.HandleFunc("/user/{id:[0-9]+}", c.UpdateUser).Methods(http.MethodPut)
 	//Handler DeleteUser
-	mux.HandleFunc("/user/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
+	//mux.HandleFunc("/user/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
 	return mux
 }
