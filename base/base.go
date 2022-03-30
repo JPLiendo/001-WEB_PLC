@@ -2,8 +2,6 @@ package base
 
 import (
 	"003-API/model"
-	"fmt"
-	"net/http"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -21,15 +19,29 @@ func connectDb() *gorm.DB {
 	return db
 }
 
-func ReadDato(w http.ResponseWriter, id int) {
+func ReadDatoS() []model.Dato {
+	datos := model.Datos
+	db := connectDb()
+	db.Find(&datos, "true")
+	return datos
+}
+
+func ReadDato(id int) model.Dato {
 	var dato model.Dato
 	db := connectDb()
 	db.First(&dato, id)
-	fmt.Fprintln(w, &dato)
+	return dato
 }
 
-func CreateDato(w http.ResponseWriter, dato model.Dato) {
+func CreateDato(dato model.Dato) model.Dato {
 	db := connectDb()
 	db.Create(&dato)
-	fmt.Fprintln(w, &dato)
+	return dato
+}
+
+func UpdateteDato(dato *model.Dato) model.Dato {
+	datoact := *dato
+	db := connectDb()
+	db.Save(&datoact)
+	return datoact
 }

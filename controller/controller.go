@@ -4,40 +4,55 @@ import (
 	"003-API/base"
 	"003-API/model"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
-// //GetUsers get a list of users
-// func GetUsers(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintln(w, "GetUser devuelve una lista de usuarios")
-// }
-
-//GetUser get a single of users
-func GetUser(w http.ResponseWriter, r *http.Request) {
+//GetDatos get a list of Datos
+func GetDatos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	id_str := r.URL.Query().Get("id")
-	id_int, _ := strconv.Atoi(id_str)
-	base.ReadDato(w, id_int)
+	datos := base.ReadDatoS()
+	fmt.Fprintln(w, &datos)
+
 }
 
-// //CreateUsers create a single of users
-func CreateUser(w http.ResponseWriter, r *http.Request) {
+//GetDato get a single of Datos
+func GetDato(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	vars := mux.Vars(r)
+	id_int, _ := strconv.Atoi(vars["id"])
+	dato := base.ReadDato(id_int)
+	fmt.Fprintln(w, &dato)
+}
+
+// //CreateDato create a single of Dato.
+func CreateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	dato := model.Dato{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
 
-	base.CreateDato(w, dato)
+	dato = base.CreateDato(dato)
+	fmt.Fprintln(w, &dato)
 }
 
-// //UpdateUsers update a sigle of users
-// func UpdateUser(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintln(w, "Edita un usuario existente")
-// }
+// //UpdateDato update a sigle of Dato.
+func UpdateDato(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	vars := mux.Vars(r)
+	id_int, _ := strconv.Atoi(vars["id"])
+	dato := base.ReadDato(id_int)
+	dato = base.UpdateteDato(&dato)
+	fmt.Fprintln(w, &dato)
+}
 
 // //DeleteUsers delete a single of users
 // func DeleteUser(w http.ResponseWriter, r *http.Request) {

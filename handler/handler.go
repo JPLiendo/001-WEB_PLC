@@ -11,15 +11,15 @@ import (
 func Router() *mux.Router {
 	//mux
 	var mux = mux.NewRouter()
-	//Handler GetUsers
-	//mux.HandleFunc("/user", c.GetUsers).Methods(http.MethodGet)
-	//Handler GetUser
-	mux.HandleFunc("/user/{id:[0-9]+}", c.GetUser).Methods(http.MethodGet)
-	//Handler CreateUser
-	//mux.HandleFunc("/user", c.CreateUser).Methods(http.MethodPost)
-	//Handler UpdateUser
-	//mux.HandleFunc("/user/{id:[0-9]+}", c.UpdateUser).Methods(http.MethodPut)
-	//Handler DeleteUser
-	//mux.HandleFunc("/user/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
+	//Handler GetDatos
+	mux.HandleFunc("/dato", c.GetDatos).Methods(http.MethodGet)
+	//Handler GetDato
+	mux.HandleFunc("/dato/{id:[0-9]+}", c.GetDato).Methods(http.MethodGet)
+	//Handler CreateDato
+	mux.HandleFunc("/dato", c.CreateDato).Methods(http.MethodPost)
+	//Handler UpdateDato
+	mux.HandleFunc("/dato/{id:[0-9]+}", c.UpdateDato).Methods(http.MethodPut)
+	//Handler DeleteDato
+	//mux.HandleFunc("/Dato/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
 	return mux
 }
