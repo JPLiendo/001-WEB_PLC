@@ -10,7 +10,7 @@ import (
 var schema model.Dato
 
 func connectDb() *gorm.DB {
-	dsn := "host=localhost user=jpliendo password=Delfina.0203 dbname=db1 port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := "host=localhost user=postgres password=Delfina.0203 dbname=db1 port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
@@ -39,9 +39,20 @@ func CreateDato(dato model.Dato) model.Dato {
 	return dato
 }
 
-func UpdateteDato(dato *model.Dato) model.Dato {
-	datoact := *dato
+func UpdateteDato(dato *model.Dato, id int) model.Dato {
+	var datoAnt model.Dato
+	datoAct := dato
 	db := connectDb()
-	db.Save(&datoact)
-	return datoact
+	db.First(&datoAnt, id)
+	datoAnt = *datoAct
+	db.Save(&datoAnt)
+	return datoAnt
+}
+
+func DeleteteDato(id int) model.Dato {
+	var dato model.Dato
+	db := connectDb()
+	db.First(&dato, id)
+	db.Delete(&model.Datos, id)
+	return dato
 }

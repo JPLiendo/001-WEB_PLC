@@ -20,6 +20,6 @@ func Router() *mux.Router {
 	//Handler UpdateDato
 	mux.HandleFunc("/dato/{id:[0-9]+}", c.UpdateDato).Methods(http.MethodPut)
 	//Handler DeleteDato
-	//mux.HandleFunc("/Dato/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
+	mux.HandleFunc("/dato/{id:[0-9]+}", c.DeleteUser).Methods(http.MethodDelete)
 	return mux
 }
