@@ -17,7 +17,7 @@ func GetDatos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	datos := base.ReadDatoS()
-	fmt.Fprintln(w, &datos)
+	fmt.Fprintln(w, datos)
 
 }
 
@@ -34,27 +34,36 @@ func GetDato(w http.ResponseWriter, r *http.Request) {
 // //CreateDato create a single of Dato.
 func CreateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusCreated)
 	dato := model.Dato{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
 
 	dato = base.CreateDato(dato)
-	fmt.Fprintln(w, &dato)
+	fmt.Fprintln(w, dato)
 }
 
 // //UpdateDato update a sigle of Dato.
 func UpdateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusAccepted)
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
-	dato := base.ReadDato(id_int)
-	dato = base.UpdateteDato(&dato)
+
+	dato := model.Dato{}
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &dato)
+
+	dato = base.UpdateteDato(&dato, id_int)
 	fmt.Fprintln(w, &dato)
 }
 
 // //DeleteUsers delete a single of users
-// func DeleteUser(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintln(w, "Elimina un usuario existente")
-// }
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusAccepted)
+	vars := mux.Vars(r)
+	id_int, _ := strconv.Atoi(vars["id"])
+	dato := base.DeleteteDato(id_int)
+	fmt.Fprintln(w, &dato)
+}
