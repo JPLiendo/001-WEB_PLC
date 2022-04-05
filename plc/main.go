@@ -1,8 +1,8 @@
 package main
 
 import (
-	plc "PLC-WEB/plc/controllerPlc"
-	controllerDatabase "PLC-WEB/plc/dataBase/controllerDataBase"
+	plc "003-API/plc/controllerPlc"
+	controllerDatabase "003-API/plc/dataBase/controllerDataBase"
 	"fmt"
 	"time"
 )

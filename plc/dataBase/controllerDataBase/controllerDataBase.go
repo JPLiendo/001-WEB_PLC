@@ -1,7 +1,7 @@
 package controllerDatabase
 
 import (
-	"PLC-WEB/plc/dataBase/modelDataBase"
+	"003-API/plc/dataBase/modelDataBase"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"PLC-WEB/Backend/base"
-	"PLC-WEB/Backend/model"
+	"003-API/Backend/base"
+	"003-API/Backend/model"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"

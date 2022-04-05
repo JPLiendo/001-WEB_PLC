@@ -1,7 +1,7 @@
 package base
 
 import (
-	"PLC-WEB/Backend/model"
+	"003-API/Backend/model"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
