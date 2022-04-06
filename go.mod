@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 module PLC-WEB
 
 go 1.17
+=======
+module 003-API
+
+go 1.13
+>>>>>>> 250875040e6e2e67a992dfa9b109d28a7d8cbe22
 
 require (
 	github.com/gorilla/mux v1.8.0
 	github.com/robinson/gos7 v0.0.0-20211020181838-a2b780484319
+<<<<<<< HEAD
 	gorm.io/driver/postgres v1.3.3
 	gorm.io/gorm v1.23.4
 )
@@ -25,4 +32,9 @@ require (
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
 	golang.org/x/text v0.3.7 // indirect
+=======
+	github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07 // indirect
+	gorm.io/driver/postgres v1.3.1
+	gorm.io/gorm v1.23.3
+>>>>>>> 250875040e6e2e67a992dfa9b109d28a7d8cbe22
 )
