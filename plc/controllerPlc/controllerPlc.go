@@ -1,4 +1,4 @@
-package plc
+package controllerPlc
 
 import (
 	"PLC-WEB/plc/dataBase/modelDataBase"
