@@ -1,4 +1,4 @@
-package plc
+package controllerPlc
 
 import (
 	"003-API/plc/dataBase/modelDataBase"

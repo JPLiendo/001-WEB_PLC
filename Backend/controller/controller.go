@@ -28,14 +28,14 @@ func GetDato(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
 	dato := base.ReadDato(id_int)
-	fmt.Fprintln(w, &dato)
+	fmt.Fprintln(w, dato)
 }
 
 // //CreateDato create a single of Dato.
 func CreateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	dato := model.Dato{}
+	dato := model.SensorAnalogico{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
 
@@ -50,7 +50,7 @@ func UpdateDato(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
 
-	dato := model.Dato{}
+	dato := model.SensorAnalogico{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
 
@@ -65,5 +65,5 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
 	dato := base.DeleteteDato(id_int)
-	fmt.Fprintln(w, &dato)
+	fmt.Fprintln(w, dato)
 }

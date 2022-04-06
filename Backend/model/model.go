@@ -1,10 +1,11 @@
 package model
 
-type Dato struct {
-	Id     int     `gorm:"primary_key"`
-	Entero int     `json:"entero"`
-	Real   float32 `json:"real"`
-	Cadena string  `json:"cadena"`
+import "time"
+
+type SensorAnalogico struct {
+	Id        int       `gorm:"primary_key"`
+	Value     float32   `json:"value"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
-var Datos []Dato
+var DatosSensor []SensorAnalogico

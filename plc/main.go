@@ -5,6 +5,8 @@ import (
 	controllerDatabase "003-API/plc/dataBase/controllerDataBase"
 	"fmt"
 	"time"
+
+	"github.com/robfig/cron"
 )
 
 func main() {
@@ -25,9 +27,19 @@ func main() {
 			},
 		},
 	}
+	timeSample(&plc)
+}
 
+func createSample(plc *plc.S7) {
 	dato := plc.ClientReadDb()
 	datoCreado := controllerDatabase.CreateDato(dato)
 	fmt.Println(datoCreado)
 
+}
+func timeSample(plc *plc.S7) {
+	c := cron.New()
+	defer c.Stop()
+	c.AddFunc("@every 10s", func() { createSample(plc) })
+	c.Start()
+	select {}
 }
