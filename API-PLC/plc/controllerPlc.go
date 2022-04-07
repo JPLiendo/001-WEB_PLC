@@ -59,7 +59,7 @@ func handlerConnection(s7 *S7Connection) *gos7.TCPClientHandler {
 }
 
 /*ClientReadDb lee un Db a partir de los parametros configurados en el tipo S7DataRead*/
-func (s7 *S7) ClientReadDb() *[]modelDataBase.SensorAnalogico {
+func (s7 *S7) ClientReadDb() *modelDataBase.SensoresAnologicos {
 	//Inicio la conexión con el PLC y difiero el cierre.
 	handler := handlerConnection(&s7.S7Connection)
 	err := handler.Connect()
@@ -77,14 +77,14 @@ func (s7 *S7) ClientReadDb() *[]modelDataBase.SensorAnalogico {
 
 	//Elijo los datos del Db a devolver.
 	var s7Helper gos7.Helper
-	sensoresAnologicos := []modelDataBase.SensorAnalogico{}
+	sensoresAnologicos := modelDataBase.SensoresAnologicos{}
+	indexBuffer := 0
 	for i := range s7.Buffer {
-		indexBuffer := 0
-		indexSlice := 0
 		if i <= len(s7.Buffer) {
-			sensoresAnologicos[indexSlice].Value = s7Helper.GetRealAt(s7.Buffer, indexBuffer)
+			nuevoDato := sensoresAnologicos.ValorSensor[indexBuffer]
+			nuevoDato = s7Helper.GetLRealAt(s7.Buffer, indexBuffer)
+			sensoresAnologicos.ValorSensor = append(sensoresAnologicos.ValorSensor, nuevoDato)
 			indexBuffer = indexBuffer + 4
-			indexSlice++
 		}
 
 	}

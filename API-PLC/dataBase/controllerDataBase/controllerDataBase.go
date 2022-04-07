@@ -8,7 +8,7 @@ import (
 )
 
 //Genero el schema de la BD a partir del modelo.
-var schema modelDataBase.SensorAnalogico
+var schema modelDataBase.SensoresAnologicos
 
 /*ConnetDB devuelve el puntero de la conexión a la DB, es exportada para poder ser llamada desde main
 y generar una sola sesion, con esto se pueden realizar multiples consultas desde la misma sesión*/
@@ -23,11 +23,7 @@ func ConnectDb() *gorm.DB {
 }
 
 /*CreateRegister crea un nuevo registro en la DB*/
-func CreateRegister(db *gorm.DB, dato []*modelDataBase.SensorAnalogico) *modelDataBase.SensorAnalogico {
-
-	for i := range dato {
-		db.Create(dato[i])
-
-	}
+func CreateRegister(db *gorm.DB, dato *modelDataBase.SensoresAnologicos) *modelDataBase.SensoresAnologicos {
+	db.Create(dato)
 	return dato
 }

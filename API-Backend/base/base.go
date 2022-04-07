@@ -1,11 +1,7 @@
 package base
 
 import (
-<<<<<<< HEAD:API-Backend/base/base.go
 	"PLC-WEB/API-Backend/model"
-=======
-	"003-API/Backend/model"
->>>>>>> 0d26b8cecef256f1b0ea110e1d851ae7fd3cfe30:Backend/base/base.go
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

@@ -3,8 +3,8 @@ package modelDataBase
 import "time"
 
 //Modelo
-type SensorAnalogico struct {
-	Id        int       `gorm:"primary_key"`
-	Value     float32   `json:"value"`
-	UpdatedAt time.Time `json:"updatedAt"`
+type SensoresAnologicos struct {
+	Id          int       `gorm:"primary_key"`
+	ValorSensor []float64 `json:"valor_sensor"`
+	UpdatedAt   time.Time `json:"updatedAt"`
 }
