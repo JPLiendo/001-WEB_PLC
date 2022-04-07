@@ -1,8 +1,8 @@
 package main
 
 import (
-	"PLC-WEB/Backend/handler"
-	"PLC-WEB/Backend/server"
+	"003-API/Backend/handler"
+	"003-API/Backend/server"
 )
 
 func main() {

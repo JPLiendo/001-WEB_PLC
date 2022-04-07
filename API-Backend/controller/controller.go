@@ -1,8 +1,13 @@
 package controller
 
 import (
+<<<<<<< HEAD:API-Backend/controller/controller.go
 	"PLC-WEB/API-Backend/base"
 	"PLC-WEB/API-Backend/model"
+=======
+	"003-API/Backend/base"
+	"003-API/Backend/model"
+>>>>>>> 0d26b8cecef256f1b0ea110e1d851ae7fd3cfe30:Backend/controller/controller.go
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
