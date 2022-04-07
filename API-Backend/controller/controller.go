@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"PLC-WEB/Backend/base"
-	"PLC-WEB/Backend/model"
+	"PLC-WEB/API-Backend/base"
+	"PLC-WEB/API-Backend/model"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -10,13 +10,21 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"gorm.io/gorm"
 )
+
+//Creo la secion global para abrirla una sola vez y poder ejecutar multiples consultas.
+func dbConnection() gorm.DB {
+	db := base.ConnectDb()
+	return *db
+}
 
 //GetDatos get a list of Datos
 func GetDatos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	datos := base.ReadDatoS()
+	db := dbConnection()
+	datos := base.ReadDatoS(&db)
 	fmt.Fprintln(w, datos)
 
 }
@@ -27,7 +35,8 @@ func GetDato(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
-	dato := base.ReadDato(id_int)
+	db := dbConnection()
+	dato := base.ReadDato(&db, id_int)
 	fmt.Fprintln(w, dato)
 }
 
@@ -38,8 +47,8 @@ func CreateDato(w http.ResponseWriter, r *http.Request) {
 	dato := model.SensorAnalogico{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
-
-	dato = base.CreateDato(dato)
+	db := dbConnection()
+	dato = base.CreateDato(&db, dato)
 	fmt.Fprintln(w, dato)
 }
 
@@ -53,8 +62,8 @@ func UpdateDato(w http.ResponseWriter, r *http.Request) {
 	dato := model.SensorAnalogico{}
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &dato)
-
-	dato = base.UpdateteDato(&dato, id_int)
+	db := dbConnection()
+	dato = base.UpdateteDato(&db, &dato, id_int)
 	fmt.Fprintln(w, &dato)
 }
 
@@ -64,6 +73,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusAccepted)
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
-	dato := base.DeleteteDato(id_int)
+	db := dbConnection()
+	dato := base.DeleteteDato(&db, id_int)
 	fmt.Fprintln(w, dato)
 }
