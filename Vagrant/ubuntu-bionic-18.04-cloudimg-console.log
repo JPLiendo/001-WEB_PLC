@@ -4523,3 +4523,1298 @@ See 'systemctl status systemd-udevd.service' for details.
 [17648.443689]  ? kthread_create_worker_on_cpu+0x70/0x70
 [17648.450397]  ret_from_fork+0x35/0x40
 [17648.455312] Code: 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 8b 55 c8 <83> e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 0b e9 7a 
+[17676.140821] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[17676.150281] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17676.186999] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17676.198862] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17676.209560] Workqueue: events bpf_prog_free_deferred
+[17676.216529] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17676.223937] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17676.234532] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17676.245213] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17676.255717] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17676.264787] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17676.273895] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17676.282603] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17676.293452] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17676.300963] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17676.310588] Call Trace:
+[17676.315286]  ? x86_configure_nx+0x60/0x60
+[17676.320764]  ? default_send_IPI_single+0x3c/0x40
+[17676.326869]  smp_call_function_many+0x1cc/0x250
+[17676.332496]  ? smp_call_function_many+0x1cc/0x250
+[17676.339125]  ? x86_configure_nx+0x60/0x60
+[17676.344269]  on_each_cpu+0x2d/0x60
+[17676.348904]  flush_tlb_kernel_range+0x79/0x80
+[17676.357219]  ? cpumask_next+0x1b/0x20
+[17676.364075]  __purge_vmap_area_lazy+0x77/0x160
+[17676.371730]  vm_unmap_aliases+0xf9/0x130
+[17676.378763]  change_page_attr_set_clr+0xd5/0x3a0
+[17676.386600]  set_memory_rw+0x29/0x30
+[17676.393026]  bpf_jit_free+0x48/0xa0
+[17676.400122]  bpf_prog_free_deferred+0x26/0x30
+[17676.408194]  process_one_work+0x1de/0x420
+[17676.415705]  worker_thread+0x32/0x410
+[17676.422728]  kthread+0x121/0x140
+[17676.428964]  ? process_one_work+0x420/0x420
+[17676.436132]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17676.445908]  ret_from_fork+0x35/0x40
+[17676.451835] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17704.144365] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[17704.153595] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17704.189705] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17704.201317] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17704.211982] Workqueue: events bpf_prog_free_deferred
+[17704.218542] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17704.225286] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17704.235272] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17704.244258] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17704.253652] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17704.263014] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17704.272058] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17704.281642] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17704.291741] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17704.299503] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17704.308530] Call Trace:
+[17704.312155]  ? x86_configure_nx+0x60/0x60
+[17704.318587]  ? default_send_IPI_single+0x3c/0x40
+[17704.324693]  smp_call_function_many+0x1cc/0x250
+[17704.330701]  ? smp_call_function_many+0x1cc/0x250
+[17704.336755]  ? x86_configure_nx+0x60/0x60
+[17704.342540]  on_each_cpu+0x2d/0x60
+[17704.347312]  flush_tlb_kernel_range+0x79/0x80
+[17704.352841]  ? cpumask_next+0x1b/0x20
+[17704.357836]  __purge_vmap_area_lazy+0x77/0x160
+[17704.364021]  vm_unmap_aliases+0xf9/0x130
+[17704.369033]  change_page_attr_set_clr+0xd5/0x3a0
+[17704.374938]  set_memory_rw+0x29/0x30
+[17704.379866]  bpf_jit_free+0x48/0xa0
+[17704.385150]  bpf_prog_free_deferred+0x26/0x30
+[17704.390657]  process_one_work+0x1de/0x420
+[17704.396036]  worker_thread+0x32/0x410
+[17704.401060]  kthread+0x121/0x140
+[17704.405755]  ? process_one_work+0x420/0x420
+[17704.411092]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17704.417860]  ret_from_fork+0x35/0x40
+[17704.422503] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17732.143422] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[17732.155051] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17732.191679] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17732.205739] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17732.216579] Workqueue: events bpf_prog_free_deferred
+[17732.223144] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17732.230595] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17732.240662] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17732.251422] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17732.261852] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17732.272560] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17732.284404] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17732.296191] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17732.308867] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17732.317857] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17732.328139] Call Trace:
+[17732.331875]  ? x86_configure_nx+0x60/0x60
+[17732.337599]  ? default_send_IPI_single+0x3c/0x40
+[17732.343872]  smp_call_function_many+0x1cc/0x250
+[17732.349522]  ? smp_call_function_many+0x1cc/0x250
+[17732.355548]  ? x86_configure_nx+0x60/0x60
+[17732.362047]  on_each_cpu+0x2d/0x60
+[17732.366663]  flush_tlb_kernel_range+0x79/0x80
+[17732.373058]  ? cpumask_next+0x1b/0x20
+[17732.378373]  __purge_vmap_area_lazy+0x77/0x160
+[17732.384383]  vm_unmap_aliases+0xf9/0x130
+[17732.390980]  change_page_attr_set_clr+0xd5/0x3a0
+[17732.397043]  set_memory_rw+0x29/0x30
+[17732.402288]  bpf_jit_free+0x48/0xa0
+[17732.407474]  bpf_prog_free_deferred+0x26/0x30
+[17732.413103]  process_one_work+0x1de/0x420
+[17732.418211]  worker_thread+0x32/0x410
+[17732.423956]  kthread+0x121/0x140
+[17732.428283]  ? process_one_work+0x420/0x420
+[17732.433610]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17732.440160]  ret_from_fork+0x35/0x40
+[17732.445182] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17760.136046] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17760.153432] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17760.202323] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17760.216117] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17760.230689] Workqueue: events bpf_prog_free_deferred
+[17760.239537] RIP: 0010:smp_call_function_single+0xdf/0x100
+[17760.250904] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17760.262299] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17760.274439] RDX: 0000000000000003 RSI: 00000000000000fb RDI: 0000000000000286
+[17760.286931] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17760.299498] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17760.312178] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17760.324584] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17760.337146] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17760.345635] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17760.361381] Call Trace:
+[17760.366177]  ? x86_configure_nx+0x60/0x60
+[17760.373612]  ? default_send_IPI_single+0x3c/0x40
+[17760.382425]  smp_call_function_many+0x1cc/0x250
+[17760.390667]  ? smp_call_function_many+0x1cc/0x250
+[17760.399229]  ? x86_configure_nx+0x60/0x60
+[17760.406253]  on_each_cpu+0x2d/0x60
+[17760.412272]  flush_tlb_kernel_range+0x79/0x80
+[17760.419487]  ? cpumask_next+0x1b/0x20
+[17760.424809]  __purge_vmap_area_lazy+0x77/0x160
+[17760.432721]  vm_unmap_aliases+0xf9/0x130
+[17760.439851]  change_page_attr_set_clr+0xd5/0x3a0
+[17760.447610]  set_memory_rw+0x29/0x30
+[17760.453912]  bpf_jit_free+0x48/0xa0
+[17760.460444]  bpf_prog_free_deferred+0x26/0x30
+[17760.468027]  process_one_work+0x1de/0x420
+[17760.474945]  worker_thread+0x32/0x410
+[17760.482400]  kthread+0x121/0x140
+[17760.488147]  ? process_one_work+0x420/0x420
+[17760.495072]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17760.503036]  ret_from_fork+0x35/0x40
+[17760.508781] Code: 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 8b 55 c8 <83> e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 0b e9 7a 
+[17788.143073] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17788.152922] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17788.198049] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17788.212789] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17788.226442] Workqueue: events bpf_prog_free_deferred
+[17788.233867] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17788.242660] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17788.254046] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17788.263532] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17788.272788] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17788.281792] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17788.291588] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17788.300718] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17788.310927] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17788.318035] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17788.326988] Call Trace:
+[17788.330279]  ? x86_configure_nx+0x60/0x60
+[17788.335344]  ? default_send_IPI_single+0x3c/0x40
+[17788.341450]  smp_call_function_many+0x1cc/0x250
+[17788.347469]  ? smp_call_function_many+0x1cc/0x250
+[17788.353302]  ? x86_configure_nx+0x60/0x60
+[17788.358819]  on_each_cpu+0x2d/0x60
+[17788.363482]  flush_tlb_kernel_range+0x79/0x80
+[17788.369711]  ? cpumask_next+0x1b/0x20
+[17788.374631]  __purge_vmap_area_lazy+0x77/0x160
+[17788.380930]  vm_unmap_aliases+0xf9/0x130
+[17788.386079]  change_page_attr_set_clr+0xd5/0x3a0
+[17788.392468]  set_memory_rw+0x29/0x30
+[17788.397296]  bpf_jit_free+0x48/0xa0
+[17788.401917]  bpf_prog_free_deferred+0x26/0x30
+[17788.407682]  process_one_work+0x1de/0x420
+[17788.413334]  worker_thread+0x32/0x410
+[17788.418242]  kthread+0x121/0x140
+[17788.422924]  ? process_one_work+0x420/0x420
+[17788.428505]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17788.435385]  ret_from_fork+0x35/0x40
+[17788.440289] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17816.138800] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17816.152209] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17816.200237] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17816.211999] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17816.221985] Workqueue: events bpf_prog_free_deferred
+[17816.228585] RIP: 0010:smp_call_function_single+0xdf/0x100
+[17816.235363] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17816.246032] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17816.255382] RDX: 0000000000000003 RSI: 00000000000000fb RDI: 0000000000000286
+[17816.264857] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17816.274569] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17816.283278] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17816.292761] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17816.303130] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17816.311241] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17816.320231] Call Trace:
+[17816.323726]  ? x86_configure_nx+0x60/0x60
+[17816.328907]  ? default_send_IPI_single+0x3c/0x40
+[17816.335144]  smp_call_function_many+0x1cc/0x250
+[17816.341251]  ? smp_call_function_many+0x1cc/0x250
+[17816.347507]  ? x86_configure_nx+0x60/0x60
+[17816.353186]  on_each_cpu+0x2d/0x60
+[17816.357753]  flush_tlb_kernel_range+0x79/0x80
+[17816.363398]  ? cpumask_next+0x1b/0x20
+[17816.368436]  __purge_vmap_area_lazy+0x77/0x160
+[17816.374534]  vm_unmap_aliases+0xf9/0x130
+[17816.379519]  change_page_attr_set_clr+0xd5/0x3a0
+[17816.385757]  set_memory_rw+0x29/0x30
+[17816.390659]  bpf_jit_free+0x48/0xa0
+[17816.395178]  bpf_prog_free_deferred+0x26/0x30
+[17816.402021]  process_one_work+0x1de/0x420
+[17816.408111]  worker_thread+0x32/0x410
+[17816.413052]  kthread+0x121/0x140
+[17816.417593]  ? process_one_work+0x420/0x420
+[17816.423086]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17816.429833]  ret_from_fork+0x35/0x40
+[17816.434449] Code: 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 8b 55 c8 <83> e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 0b e9 7a 
+[17844.152333] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17844.163104] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17844.208940] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17844.222953] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17844.236315] Workqueue: events bpf_prog_free_deferred
+[17844.245072] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17844.253780] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17844.264204] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17844.272893] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17844.282032] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17844.292304] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17844.301248] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17844.310435] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17844.321205] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17844.328946] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17844.338153] Call Trace:
+[17844.341545]  ? x86_configure_nx+0x60/0x60
+[17844.347134]  ? default_send_IPI_single+0x3c/0x40
+[17844.353385]  smp_call_function_many+0x1cc/0x250
+[17844.359408]  ? smp_call_function_many+0x1cc/0x250
+[17844.365828]  ? x86_configure_nx+0x60/0x60
+[17844.371377]  on_each_cpu+0x2d/0x60
+[17844.376886]  flush_tlb_kernel_range+0x79/0x80
+[17844.383578]  ? cpumask_next+0x1b/0x20
+[17844.388802]  __purge_vmap_area_lazy+0x77/0x160
+[17844.394692]  vm_unmap_aliases+0xf9/0x130
+[17844.400322]  change_page_attr_set_clr+0xd5/0x3a0
+[17844.406511]  set_memory_rw+0x29/0x30
+[17844.411204]  bpf_jit_free+0x48/0xa0
+[17844.417627]  bpf_prog_free_deferred+0x26/0x30
+[17844.425562]  process_one_work+0x1de/0x420
+[17844.432627]  worker_thread+0x32/0x410
+[17844.438417]  kthread+0x121/0x140
+[17844.442705]  ? process_one_work+0x420/0x420
+[17844.448538]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17844.454920]  ret_from_fork+0x35/0x40
+[17844.459722] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17872.137504] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17872.146782] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17872.182692] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17872.194370] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17872.205091] Workqueue: events bpf_prog_free_deferred
+[17872.211625] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17872.219075] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17872.228879] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17872.237937] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17872.247445] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17872.256448] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17872.265165] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17872.274529] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17872.284995] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17872.293081] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17872.303033] Call Trace:
+[17872.306991]  ? x86_configure_nx+0x60/0x60
+[17872.312693]  ? default_send_IPI_single+0x3c/0x40
+[17872.318422]  smp_call_function_many+0x1cc/0x250
+[17872.324279]  ? smp_call_function_many+0x1cc/0x250
+[17872.330957]  ? x86_configure_nx+0x60/0x60
+[17872.336604]  on_each_cpu+0x2d/0x60
+[17872.341921]  flush_tlb_kernel_range+0x79/0x80
+[17872.348011]  ? cpumask_next+0x1b/0x20
+[17872.354410]  __purge_vmap_area_lazy+0x77/0x160
+[17872.361869]  vm_unmap_aliases+0xf9/0x130
+[17872.367872]  change_page_attr_set_clr+0xd5/0x3a0
+[17872.375437]  set_memory_rw+0x29/0x30
+[17872.380554]  bpf_jit_free+0x48/0xa0
+[17872.385947]  bpf_prog_free_deferred+0x26/0x30
+[17872.392387]  process_one_work+0x1de/0x420
+[17872.398156]  worker_thread+0x32/0x410
+[17872.403247]  kthread+0x121/0x140
+[17872.408111]  ? process_one_work+0x420/0x420
+[17872.413742]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17872.420976]  ret_from_fork+0x35/0x40
+[17872.425639] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17900.138409] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17900.147822] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17900.184127] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17900.196146] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17900.206891] Workqueue: events bpf_prog_free_deferred
+[17900.213858] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17900.220806] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17900.230288] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17900.239530] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17900.248618] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17900.258005] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17900.267045] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17900.276057] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17900.286678] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17900.294229] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17900.303467] Call Trace:
+[17900.307080]  ? x86_configure_nx+0x60/0x60
+[17900.312249]  ? default_send_IPI_single+0x3c/0x40
+[17900.318382]  smp_call_function_many+0x1cc/0x250
+[17900.324746]  ? smp_call_function_many+0x1cc/0x250
+[17900.331072]  ? x86_configure_nx+0x60/0x60
+[17900.336463]  on_each_cpu+0x2d/0x60
+[17900.341860]  flush_tlb_kernel_range+0x79/0x80
+[17900.349636]  ? cpumask_next+0x1b/0x20
+[17900.356014]  __purge_vmap_area_lazy+0x77/0x160
+[17900.363623]  vm_unmap_aliases+0xf9/0x130
+[17900.369683]  change_page_attr_set_clr+0xd5/0x3a0
+[17900.375614]  set_memory_rw+0x29/0x30
+[17900.380940]  bpf_jit_free+0x48/0xa0
+[17900.386375]  bpf_prog_free_deferred+0x26/0x30
+[17900.392567]  process_one_work+0x1de/0x420
+[17900.398392]  worker_thread+0x32/0x410
+[17900.403093]  kthread+0x121/0x140
+[17900.407654]  ? process_one_work+0x420/0x420
+[17900.412966]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17900.419328]  ret_from_fork+0x35/0x40
+[17900.423954] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17928.141342] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17928.151922] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17928.191948] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17928.203975] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17928.215027] Workqueue: events bpf_prog_free_deferred
+[17928.221524] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17928.229617] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17928.241839] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17928.253055] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17928.263856] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17928.275117] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17928.285660] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17928.296823] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17928.309218] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17928.318369] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17928.329405] Call Trace:
+[17928.334332]  ? x86_configure_nx+0x60/0x60
+[17928.340699]  ? default_send_IPI_single+0x3c/0x40
+[17928.347973]  smp_call_function_many+0x1cc/0x250
+[17928.355710]  ? smp_call_function_many+0x1cc/0x250
+[17928.362619]  ? x86_configure_nx+0x60/0x60
+[17928.368001]  on_each_cpu+0x2d/0x60
+[17928.372882]  flush_tlb_kernel_range+0x79/0x80
+[17928.380097]  ? cpumask_next+0x1b/0x20
+[17928.386159]  __purge_vmap_area_lazy+0x77/0x160
+[17928.392282]  vm_unmap_aliases+0xf9/0x130
+[17928.397320]  change_page_attr_set_clr+0xd5/0x3a0
+[17928.404243]  set_memory_rw+0x29/0x30
+[17928.409293]  bpf_jit_free+0x48/0xa0
+[17928.413938]  bpf_prog_free_deferred+0x26/0x30
+[17928.420970]  process_one_work+0x1de/0x420
+[17928.426521]  worker_thread+0x32/0x410
+[17928.431490]  kthread+0x121/0x140
+[17928.435984]  ? process_one_work+0x420/0x420
+[17928.442994]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17928.451186]  ret_from_fork+0x35/0x40
+[17928.456966] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17956.140445] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[17956.149822] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17956.185446] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17956.197087] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17956.207771] Workqueue: events bpf_prog_free_deferred
+[17956.214480] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17956.221277] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17956.230992] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17956.239934] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17956.249227] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17956.258205] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17956.267144] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17956.276371] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17956.286630] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17956.294348] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17956.303124] Call Trace:
+[17956.306777]  ? x86_configure_nx+0x60/0x60
+[17956.312412]  ? default_send_IPI_single+0x3c/0x40
+[17956.319246]  smp_call_function_many+0x1cc/0x250
+[17956.325329]  ? smp_call_function_many+0x1cc/0x250
+[17956.331523]  ? x86_configure_nx+0x60/0x60
+[17956.336998]  on_each_cpu+0x2d/0x60
+[17956.341383]  flush_tlb_kernel_range+0x79/0x80
+[17956.347099]  ? cpumask_next+0x1b/0x20
+[17956.351773]  __purge_vmap_area_lazy+0x77/0x160
+[17956.357706]  vm_unmap_aliases+0xf9/0x130
+[17956.362839]  change_page_attr_set_clr+0xd5/0x3a0
+[17956.368750]  set_memory_rw+0x29/0x30
+[17956.373328]  bpf_jit_free+0x48/0xa0
+[17956.378135]  bpf_prog_free_deferred+0x26/0x30
+[17956.383933]  process_one_work+0x1de/0x420
+[17956.389330]  worker_thread+0x32/0x410
+[17956.394390]  kthread+0x121/0x140
+[17956.399278]  ? process_one_work+0x420/0x420
+[17956.404704]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17956.411115]  ret_from_fork+0x35/0x40
+[17956.416005] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[17984.136018] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[17984.145452] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[17984.183809] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[17984.196396] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[17984.207619] Workqueue: events bpf_prog_free_deferred
+[17984.214738] RIP: 0010:smp_call_function_single+0xdc/0x100
+[17984.222520] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[17984.232412] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[17984.242824] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[17984.251824] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[17984.261319] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[17984.271166] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[17984.280621] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[17984.291500] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[17984.299037] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[17984.308205] Call Trace:
+[17984.311890]  ? x86_configure_nx+0x60/0x60
+[17984.317029]  ? default_send_IPI_single+0x3c/0x40
+[17984.323607]  smp_call_function_many+0x1cc/0x250
+[17984.329813]  ? smp_call_function_many+0x1cc/0x250
+[17984.336186]  ? x86_configure_nx+0x60/0x60
+[17984.342084]  on_each_cpu+0x2d/0x60
+[17984.346720]  flush_tlb_kernel_range+0x79/0x80
+[17984.353326]  ? cpumask_next+0x1b/0x20
+[17984.359212]  __purge_vmap_area_lazy+0x77/0x160
+[17984.365570]  vm_unmap_aliases+0xf9/0x130
+[17984.371515]  change_page_attr_set_clr+0xd5/0x3a0
+[17984.377393]  set_memory_rw+0x29/0x30
+[17984.382082]  bpf_jit_free+0x48/0xa0
+[17984.386980]  bpf_prog_free_deferred+0x26/0x30
+[17984.392617]  process_one_work+0x1de/0x420
+[17984.397812]  worker_thread+0x32/0x410
+[17984.403487]  kthread+0x121/0x140
+[17984.408150]  ? process_one_work+0x420/0x420
+[17984.413624]  ? kthread_create_worker_on_cpu+0x70/0x70
+[17984.420751]  ret_from_fork+0x35/0x40
+[17984.425562] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18012.150124] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18012.163669] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18012.243672] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18012.260124] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18012.272219] Workqueue: events bpf_prog_free_deferred
+[18012.279701] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18012.286953] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18012.297295] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18012.306498] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18012.315745] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18012.325738] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18012.335014] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18012.343844] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18012.354882] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18012.362946] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18012.372250] Call Trace:
+[18012.376045]  ? x86_configure_nx+0x60/0x60
+[18012.381273]  ? default_send_IPI_single+0x3c/0x40
+[18012.387108]  smp_call_function_many+0x1cc/0x250
+[18012.392903]  ? smp_call_function_many+0x1cc/0x250
+[18012.401171]  ? x86_configure_nx+0x60/0x60
+[18012.408637]  on_each_cpu+0x2d/0x60
+[18012.415134]  flush_tlb_kernel_range+0x79/0x80
+[18012.422766]  ? cpumask_next+0x1b/0x20
+[18012.429233]  __purge_vmap_area_lazy+0x77/0x160
+[18012.436823]  vm_unmap_aliases+0xf9/0x130
+[18012.444375]  change_page_attr_set_clr+0xd5/0x3a0
+[18012.452991]  set_memory_rw+0x29/0x30
+[18012.459901]  bpf_jit_free+0x48/0xa0
+[18012.466964]  bpf_prog_free_deferred+0x26/0x30
+[18012.475074]  process_one_work+0x1de/0x420
+[18012.484817]  worker_thread+0x32/0x410
+[18012.492231]  kthread+0x121/0x140
+[18012.498129]  ? process_one_work+0x420/0x420
+[18012.505874]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18012.515118]  ret_from_fork+0x35/0x40
+[18012.521810] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18040.138552] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18040.151472] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18040.208184] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18040.224648] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18040.244225] Workqueue: events bpf_prog_free_deferred
+[18040.253621] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18040.263080] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18040.275476] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18040.291999] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18040.311853] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18040.328655] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18040.340840] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18040.361736] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18040.375275] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18040.384498] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18040.398197] Call Trace:
+[18040.402991]  ? x86_configure_nx+0x60/0x60
+[18040.409391]  ? default_send_IPI_single+0x3c/0x40
+[18040.416913]  smp_call_function_many+0x1cc/0x250
+[18040.427222]  ? smp_call_function_many+0x1cc/0x250
+[18040.435383]  ? x86_configure_nx+0x60/0x60
+[18040.441918]  on_each_cpu+0x2d/0x60
+[18040.446812]  flush_tlb_kernel_range+0x79/0x80
+[18040.454240]  ? cpumask_next+0x1b/0x20
+[18040.461241]  __purge_vmap_area_lazy+0x77/0x160
+[18040.468179]  vm_unmap_aliases+0xf9/0x130
+[18040.474667]  change_page_attr_set_clr+0xd5/0x3a0
+[18040.487676]  set_memory_rw+0x29/0x30
+[18040.494836]  bpf_jit_free+0x48/0xa0
+[18040.505817]  bpf_prog_free_deferred+0x26/0x30
+[18040.518746]  process_one_work+0x1de/0x420
+[18040.527282]  worker_thread+0x32/0x410
+[18040.534726]  kthread+0x121/0x140
+[18040.558574]  ? process_one_work+0x420/0x420
+[18040.565454]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18040.573751]  ret_from_fork+0x35/0x40
+[18040.579252] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18068.143320] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18068.154272] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18068.194240] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18068.206743] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18068.219209] Workqueue: events bpf_prog_free_deferred
+[18068.227549] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18068.236479] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18068.250159] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18068.262641] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18068.278537] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18068.296072] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18068.305790] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18068.316501] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18068.329334] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18068.340986] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18068.353278] Call Trace:
+[18068.358905]  ? x86_configure_nx+0x60/0x60
+[18068.365629]  ? default_send_IPI_single+0x3c/0x40
+[18068.373098]  smp_call_function_many+0x1cc/0x250
+[18068.381604]  ? smp_call_function_many+0x1cc/0x250
+[18068.388610]  ? x86_configure_nx+0x60/0x60
+[18068.395717]  on_each_cpu+0x2d/0x60
+[18068.402526]  flush_tlb_kernel_range+0x79/0x80
+[18068.409905]  ? cpumask_next+0x1b/0x20
+[18068.416020]  __purge_vmap_area_lazy+0x77/0x160
+[18068.424719]  vm_unmap_aliases+0xf9/0x130
+[18068.431823]  change_page_attr_set_clr+0xd5/0x3a0
+[18068.439589]  set_memory_rw+0x29/0x30
+[18068.445939]  bpf_jit_free+0x48/0xa0
+[18068.452484]  bpf_prog_free_deferred+0x26/0x30
+[18068.462121]  process_one_work+0x1de/0x420
+[18068.475817]  worker_thread+0x32/0x410
+[18068.483164]  kthread+0x121/0x140
+[18068.488944]  ? process_one_work+0x420/0x420
+[18068.497203]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18068.506672]  ret_from_fork+0x35/0x40
+[18068.514311] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18096.136776] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18096.150848] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18096.205474] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18096.219711] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18096.235902] Workqueue: events bpf_prog_free_deferred
+[18096.245295] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18096.255132] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18096.270195] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18096.282199] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18096.293947] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18096.308798] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18096.322426] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18096.335614] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18096.351842] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18096.361215] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18096.373630] Call Trace:
+[18096.377962]  ? x86_configure_nx+0x60/0x60
+[18096.387968]  ? default_send_IPI_single+0x3c/0x40
+[18096.395582]  smp_call_function_many+0x1cc/0x250
+[18096.403676]  ? smp_call_function_many+0x1cc/0x250
+[18096.424915]  ? x86_configure_nx+0x60/0x60
+[18096.433055]  on_each_cpu+0x2d/0x60
+[18096.438684]  flush_tlb_kernel_range+0x79/0x80
+[18096.445709]  ? cpumask_next+0x1b/0x20
+[18096.454722]  __purge_vmap_area_lazy+0x77/0x160
+[18096.463169]  vm_unmap_aliases+0xf9/0x130
+[18096.472825]  change_page_attr_set_clr+0xd5/0x3a0
+[18096.485704]  set_memory_rw+0x29/0x30
+[18096.492678]  bpf_jit_free+0x48/0xa0
+[18096.498718]  bpf_prog_free_deferred+0x26/0x30
+[18096.505066]  process_one_work+0x1de/0x420
+[18096.511502]  worker_thread+0x32/0x410
+[18096.519030]  kthread+0x121/0x140
+[18096.524883]  ? process_one_work+0x420/0x420
+[18096.532600]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18096.541984]  ret_from_fork+0x35/0x40
+[18096.548250] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18124.142972] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18124.152909] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18124.191250] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18124.203582] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18124.214054] Workqueue: events bpf_prog_free_deferred
+[18124.221585] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18124.228677] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18124.238584] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18124.247761] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18124.257094] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18124.267129] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18124.276741] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18124.285791] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18124.295700] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18124.302824] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18124.312026] Call Trace:
+[18124.315785]  ? x86_configure_nx+0x60/0x60
+[18124.320891]  ? default_send_IPI_single+0x3c/0x40
+[18124.327469]  smp_call_function_many+0x1cc/0x250
+[18124.333312]  ? smp_call_function_many+0x1cc/0x250
+[18124.339546]  ? x86_configure_nx+0x60/0x60
+[18124.344606]  on_each_cpu+0x2d/0x60
+[18124.349592]  flush_tlb_kernel_range+0x79/0x80
+[18124.356059]  ? cpumask_next+0x1b/0x20
+[18124.361178]  __purge_vmap_area_lazy+0x77/0x160
+[18124.367077]  vm_unmap_aliases+0xf9/0x130
+[18124.373517]  change_page_attr_set_clr+0xd5/0x3a0
+[18124.379853]  set_memory_rw+0x29/0x30
+[18124.384612]  bpf_jit_free+0x48/0xa0
+[18124.389261]  bpf_prog_free_deferred+0x26/0x30
+[18124.395288]  process_one_work+0x1de/0x420
+[18124.400574]  worker_thread+0x32/0x410
+[18124.405523]  kthread+0x121/0x140
+[18124.409877]  ? process_one_work+0x420/0x420
+[18124.415791]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18124.422436]  ret_from_fork+0x35/0x40
+[18124.427029] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18152.144263] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18152.153543] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18152.189892] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18152.202200] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18152.212630] Workqueue: events bpf_prog_free_deferred
+[18152.218832] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18152.225891] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18152.235613] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18152.244944] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18152.254048] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18152.263487] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18152.272837] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18152.283274] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18152.294662] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18152.302996] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18152.314128] Call Trace:
+[18152.317592]  ? x86_configure_nx+0x60/0x60
+[18152.323216]  ? default_send_IPI_single+0x3c/0x40
+[18152.330680]  smp_call_function_many+0x1cc/0x250
+[18152.336927]  ? smp_call_function_many+0x1cc/0x250
+[18152.343704]  ? x86_configure_nx+0x60/0x60
+[18152.349837]  on_each_cpu+0x2d/0x60
+[18152.354638]  flush_tlb_kernel_range+0x79/0x80
+[18152.361132]  ? cpumask_next+0x1b/0x20
+[18152.366324]  __purge_vmap_area_lazy+0x77/0x160
+[18152.374556]  vm_unmap_aliases+0xf9/0x130
+[18152.383798]  change_page_attr_set_clr+0xd5/0x3a0
+[18152.392153]  set_memory_rw+0x29/0x30
+[18152.398293]  bpf_jit_free+0x48/0xa0
+[18152.403035]  bpf_prog_free_deferred+0x26/0x30
+[18152.408573]  process_one_work+0x1de/0x420
+[18152.414836]  worker_thread+0x32/0x410
+[18152.419793]  kthread+0x121/0x140
+[18152.424293]  ? process_one_work+0x420/0x420
+[18152.432265]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18152.440655]  ret_from_fork+0x35/0x40
+[18152.446826] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18180.143128] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18180.152423] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18180.188709] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18180.200687] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18180.211000] Workqueue: events bpf_prog_free_deferred
+[18180.217781] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18180.224936] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18180.234376] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18180.243759] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18180.252930] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18180.262169] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18180.271162] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18180.280147] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18180.290776] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18180.298547] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18180.307945] Call Trace:
+[18180.311582]  ? x86_configure_nx+0x60/0x60
+[18180.316754]  ? default_send_IPI_single+0x3c/0x40
+[18180.322744]  smp_call_function_many+0x1cc/0x250
+[18180.328898]  ? smp_call_function_many+0x1cc/0x250
+[18180.334977]  ? x86_configure_nx+0x60/0x60
+[18180.340233]  on_each_cpu+0x2d/0x60
+[18180.344780]  flush_tlb_kernel_range+0x79/0x80
+[18180.351106]  ? cpumask_next+0x1b/0x20
+[18180.356167]  __purge_vmap_area_lazy+0x77/0x160
+[18180.362087]  vm_unmap_aliases+0xf9/0x130
+[18180.367418]  change_page_attr_set_clr+0xd5/0x3a0
+[18180.373803]  set_memory_rw+0x29/0x30
+[18180.378771]  bpf_jit_free+0x48/0xa0
+[18180.383586]  bpf_prog_free_deferred+0x26/0x30
+[18180.389120]  process_one_work+0x1de/0x420
+[18180.394694]  worker_thread+0x32/0x410
+[18180.399695]  kthread+0x121/0x140
+[18180.404209]  ? process_one_work+0x420/0x420
+[18180.409750]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18180.416690]  ret_from_fork+0x35/0x40
+[18180.421646] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18208.146295] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18208.156332] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18208.195077] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18208.206852] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18208.218112] Workqueue: events bpf_prog_free_deferred
+[18208.224970] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18208.233136] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18208.245148] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18208.257565] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18208.269210] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18208.280024] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18208.290413] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18208.301528] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18208.313950] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18208.323494] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18208.334161] Call Trace:
+[18208.338141]  ? x86_configure_nx+0x60/0x60
+[18208.345056]  ? default_send_IPI_single+0x3c/0x40
+[18208.352470]  smp_call_function_many+0x1cc/0x250
+[18208.359510]  ? smp_call_function_many+0x1cc/0x250
+[18208.366967]  ? x86_configure_nx+0x60/0x60
+[18208.373392]  on_each_cpu+0x2d/0x60
+[18208.378768]  flush_tlb_kernel_range+0x79/0x80
+[18208.386455]  ? cpumask_next+0x1b/0x20
+[18208.392919]  __purge_vmap_area_lazy+0x77/0x160
+[18208.400109]  vm_unmap_aliases+0xf9/0x130
+[18208.406650]  change_page_attr_set_clr+0xd5/0x3a0
+[18208.413905]  set_memory_rw+0x29/0x30
+[18208.419605]  bpf_jit_free+0x48/0xa0
+[18208.425628]  bpf_prog_free_deferred+0x26/0x30
+[18208.432667]  process_one_work+0x1de/0x420
+[18208.439197]  worker_thread+0x32/0x410
+[18208.445054]  kthread+0x121/0x140
+[18208.450801]  ? process_one_work+0x420/0x420
+[18208.457862]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18208.465848]  ret_from_fork+0x35/0x40
+[18208.472439] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18236.143257] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18236.152627] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18236.188998] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18236.201095] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18236.211482] Workqueue: events bpf_prog_free_deferred
+[18236.218061] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18236.225433] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18236.235173] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18236.244837] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18236.253888] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18236.263166] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18236.272305] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18236.281270] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18236.291854] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18236.299327] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18236.308735] Call Trace:
+[18236.312428]  ? x86_configure_nx+0x60/0x60
+[18236.317812]  ? default_send_IPI_single+0x3c/0x40
+[18236.324020]  smp_call_function_many+0x1cc/0x250
+[18236.330626]  ? smp_call_function_many+0x1cc/0x250
+[18236.336550]  ? x86_configure_nx+0x60/0x60
+[18236.341778]  on_each_cpu+0x2d/0x60
+[18236.346395]  flush_tlb_kernel_range+0x79/0x80
+[18236.352214]  ? cpumask_next+0x1b/0x20
+[18236.357011]  __purge_vmap_area_lazy+0x77/0x160
+[18236.362816]  vm_unmap_aliases+0xf9/0x130
+[18236.368163]  change_page_attr_set_clr+0xd5/0x3a0
+[18236.374888]  set_memory_rw+0x29/0x30
+[18236.379617]  bpf_jit_free+0x48/0xa0
+[18236.384949]  bpf_prog_free_deferred+0x26/0x30
+[18236.391118]  process_one_work+0x1de/0x420
+[18236.396406]  worker_thread+0x32/0x410
+[18236.401166]  kthread+0x121/0x140
+[18236.405351]  ? process_one_work+0x420/0x420
+[18236.410662]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18236.417976]  ret_from_fork+0x35/0x40
+[18236.422558] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18264.144164] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18264.153488] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18264.189809] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18264.202432] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18264.212866] Workqueue: events bpf_prog_free_deferred
+[18264.220050] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18264.227179] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18264.236997] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18264.246299] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18264.255359] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18264.264543] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18264.273714] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18264.282751] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18264.293359] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18264.300834] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18264.310208] Call Trace:
+[18264.313843]  ? x86_configure_nx+0x60/0x60
+[18264.318995]  ? default_send_IPI_single+0x3c/0x40
+[18264.324945]  smp_call_function_many+0x1cc/0x250
+[18264.331123]  ? smp_call_function_many+0x1cc/0x250
+[18264.337593]  ? x86_configure_nx+0x60/0x60
+[18264.342988]  on_each_cpu+0x2d/0x60
+[18264.347509]  flush_tlb_kernel_range+0x79/0x80
+[18264.353335]  ? cpumask_next+0x1b/0x20
+[18264.358325]  __purge_vmap_area_lazy+0x77/0x160
+[18264.364255]  vm_unmap_aliases+0xf9/0x130
+[18264.369288]  change_page_attr_set_clr+0xd5/0x3a0
+[18264.375725]  set_memory_rw+0x29/0x30
+[18264.380594]  bpf_jit_free+0x48/0xa0
+[18264.385080]  bpf_prog_free_deferred+0x26/0x30
+[18264.391718]  process_one_work+0x1de/0x420
+[18264.396864]  worker_thread+0x32/0x410
+[18264.401601]  kthread+0x121/0x140
+[18264.405939]  ? process_one_work+0x420/0x420
+[18264.411241]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18264.417963]  ret_from_fork+0x35/0x40
+[18264.422859] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18292.137531] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18292.146919] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18292.183014] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18292.195045] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18292.205468] Workqueue: events bpf_prog_free_deferred
+[18292.212091] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18292.219331] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18292.228839] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18292.238423] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18292.247461] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18292.256898] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18292.265992] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18292.275085] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18292.285677] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18292.293117] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18292.302553] Call Trace:
+[18292.306448]  ? x86_configure_nx+0x60/0x60
+[18292.311498]  ? default_send_IPI_single+0x3c/0x40
+[18292.317305]  smp_call_function_many+0x1cc/0x250
+[18292.323633]  ? smp_call_function_many+0x1cc/0x250
+[18292.329655]  ? x86_configure_nx+0x60/0x60
+[18292.335117]  on_each_cpu+0x2d/0x60
+[18292.339841]  flush_tlb_kernel_range+0x79/0x80
+[18292.345926]  ? cpumask_next+0x1b/0x20
+[18292.350919]  __purge_vmap_area_lazy+0x77/0x160
+[18292.356807]  vm_unmap_aliases+0xf9/0x130
+[18292.362252]  change_page_attr_set_clr+0xd5/0x3a0
+[18292.368612]  set_memory_rw+0x29/0x30
+[18292.373760]  bpf_jit_free+0x48/0xa0
+[18292.379026]  bpf_prog_free_deferred+0x26/0x30
+[18292.385564]  process_one_work+0x1de/0x420
+[18292.391349]  worker_thread+0x32/0x410
+[18292.396956]  kthread+0x121/0x140
+[18292.401459]  ? process_one_work+0x420/0x420
+[18292.407104]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18292.414324]  ret_from_fork+0x35/0x40
+[18292.419347] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18320.137335] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18320.147402] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18320.184427] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18320.196575] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18320.208070] Workqueue: events bpf_prog_free_deferred
+[18320.214991] RIP: 0010:smp_call_function_single+0xdf/0x100
+[18320.222052] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18320.231739] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18320.241213] RDX: 0000000000000003 RSI: 00000000000000fb RDI: 0000000000000286
+[18320.250479] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18320.259932] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18320.269737] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18320.279378] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18320.289971] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18320.297491] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18320.306700] Call Trace:
+[18320.310430]  ? x86_configure_nx+0x60/0x60
+[18320.315609]  ? default_send_IPI_single+0x3c/0x40
+[18320.321948]  smp_call_function_many+0x1cc/0x250
+[18320.327866]  ? smp_call_function_many+0x1cc/0x250
+[18320.334494]  ? x86_configure_nx+0x60/0x60
+[18320.339709]  on_each_cpu+0x2d/0x60
+[18320.344494]  flush_tlb_kernel_range+0x79/0x80
+[18320.350118]  ? cpumask_next+0x1b/0x20
+[18320.355248]  __purge_vmap_area_lazy+0x77/0x160
+[18320.361064]  vm_unmap_aliases+0xf9/0x130
+[18320.366860]  change_page_attr_set_clr+0xd5/0x3a0
+[18320.373053]  set_memory_rw+0x29/0x30
+[18320.378090]  bpf_jit_free+0x48/0xa0
+[18320.382675]  bpf_prog_free_deferred+0x26/0x30
+[18320.388583]  process_one_work+0x1de/0x420
+[18320.394055]  worker_thread+0x32/0x410
+[18320.398980]  kthread+0x121/0x140
+[18320.403186]  ? process_one_work+0x420/0x420
+[18320.409093]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18320.415811]  ret_from_fork+0x35/0x40
+[18320.420797] Code: 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 8b 55 c8 <83> e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 0b e9 7a 
+[18348.156420] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18348.167824] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18348.206012] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18348.218852] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18348.229571] Workqueue: events bpf_prog_free_deferred
+[18348.236450] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18348.243561] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18348.254734] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18348.266183] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18348.276820] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18348.287791] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18348.297680] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18348.307592] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18348.318722] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18348.326515] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18348.336524] Call Trace:
+[18348.340546]  ? x86_configure_nx+0x60/0x60
+[18348.346389]  ? default_send_IPI_single+0x3c/0x40
+[18348.354193]  smp_call_function_many+0x1cc/0x250
+[18348.360829]  ? smp_call_function_many+0x1cc/0x250
+[18348.367312]  ? x86_configure_nx+0x60/0x60
+[18348.373736]  on_each_cpu+0x2d/0x60
+[18348.378674]  flush_tlb_kernel_range+0x79/0x80
+[18348.384826]  ? cpumask_next+0x1b/0x20
+[18348.389799]  __purge_vmap_area_lazy+0x77/0x160
+[18348.396169]  vm_unmap_aliases+0xf9/0x130
+[18348.401910]  change_page_attr_set_clr+0xd5/0x3a0
+[18348.408685]  set_memory_rw+0x29/0x30
+[18348.414351]  bpf_jit_free+0x48/0xa0
+[18348.419125]  bpf_prog_free_deferred+0x26/0x30
+[18348.424978]  process_one_work+0x1de/0x420
+[18348.430402]  worker_thread+0x32/0x410
+[18348.436265]  kthread+0x121/0x140
+[18348.440961]  ? process_one_work+0x420/0x420
+[18348.447056]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18348.453846]  ret_from_fork+0x35/0x40
+[18348.459303] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18376.143650] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18376.153147] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18376.191421] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18376.204027] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18376.214492] Workqueue: events bpf_prog_free_deferred
+[18376.221436] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18376.228628] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18376.238542] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18376.247946] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18376.256961] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18376.267050] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18376.276156] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18376.285931] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18376.296277] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18376.303734] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18376.313129] Call Trace:
+[18376.316911]  ? x86_configure_nx+0x60/0x60
+[18376.322394]  ? default_send_IPI_single+0x3c/0x40
+[18376.329266]  smp_call_function_many+0x1cc/0x250
+[18376.335522]  ? smp_call_function_many+0x1cc/0x250
+[18376.341509]  ? x86_configure_nx+0x60/0x60
+[18376.346976]  on_each_cpu+0x2d/0x60
+[18376.351724]  flush_tlb_kernel_range+0x79/0x80
+[18376.357624]  ? cpumask_next+0x1b/0x20
+[18376.362711]  __purge_vmap_area_lazy+0x77/0x160
+[18376.368487]  vm_unmap_aliases+0xf9/0x130
+[18376.374271]  change_page_attr_set_clr+0xd5/0x3a0
+[18376.380469]  set_memory_rw+0x29/0x30
+[18376.385198]  bpf_jit_free+0x48/0xa0
+[18376.390123]  bpf_prog_free_deferred+0x26/0x30
+[18376.395954]  process_one_work+0x1de/0x420
+[18376.401191]  worker_thread+0x32/0x410
+[18376.406226]  kthread+0x121/0x140
+[18376.410489]  ? process_one_work+0x420/0x420
+[18376.416107]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18376.422395]  ret_from_fork+0x35/0x40
+[18376.427172] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18404.142789] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18404.152731] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18404.190995] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18404.203550] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18404.214979] Workqueue: events bpf_prog_free_deferred
+[18404.221561] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18404.229926] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18404.242017] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18404.253702] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18404.264577] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18404.277840] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18404.294341] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18404.308089] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18404.321682] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18404.331153] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18404.342424] Call Trace:
+[18404.346046]  ? x86_configure_nx+0x60/0x60
+[18404.351216]  ? default_send_IPI_single+0x3c/0x40
+[18404.357613]  smp_call_function_many+0x1cc/0x250
+[18404.363434]  ? smp_call_function_many+0x1cc/0x250
+[18404.369814]  ? x86_configure_nx+0x60/0x60
+[18404.375921]  on_each_cpu+0x2d/0x60
+[18404.381159]  flush_tlb_kernel_range+0x79/0x80
+[18404.386703]  ? cpumask_next+0x1b/0x20
+[18404.391711]  __purge_vmap_area_lazy+0x77/0x160
+[18404.397844]  vm_unmap_aliases+0xf9/0x130
+[18404.404099]  change_page_attr_set_clr+0xd5/0x3a0
+[18404.410028]  set_memory_rw+0x29/0x30
+[18404.415096]  bpf_jit_free+0x48/0xa0
+[18404.419760]  bpf_prog_free_deferred+0x26/0x30
+[18404.427549]  process_one_work+0x1de/0x420
+[18404.433786]  worker_thread+0x32/0x410
+[18404.439382]  kthread+0x121/0x140
+[18404.445013]  ? process_one_work+0x420/0x420
+[18404.452499]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18404.460586]  ret_from_fork+0x35/0x40
+[18404.466512] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18432.148201] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18432.157473] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18432.195363] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18432.207160] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18432.218068] Workqueue: events bpf_prog_free_deferred
+[18432.224617] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18432.231896] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18432.241784] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18432.251429] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18432.261226] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18432.270610] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18432.279963] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18432.289139] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18432.300355] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18432.308116] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18432.317449] Call Trace:
+[18432.321557]  ? x86_configure_nx+0x60/0x60
+[18432.326730]  ? default_send_IPI_single+0x3c/0x40
+[18432.332782]  smp_call_function_many+0x1cc/0x250
+[18432.339124]  ? smp_call_function_many+0x1cc/0x250
+[18432.346136]  ? x86_configure_nx+0x60/0x60
+[18432.351963]  on_each_cpu+0x2d/0x60
+[18432.356681]  flush_tlb_kernel_range+0x79/0x80
+[18432.362211]  ? cpumask_next+0x1b/0x20
+[18432.367423]  __purge_vmap_area_lazy+0x77/0x160
+[18432.373015]  vm_unmap_aliases+0xf9/0x130
+[18432.378032]  change_page_attr_set_clr+0xd5/0x3a0
+[18432.383836]  set_memory_rw+0x29/0x30
+[18432.389208]  bpf_jit_free+0x48/0xa0
+[18432.393936]  bpf_prog_free_deferred+0x26/0x30
+[18432.399518]  process_one_work+0x1de/0x420
+[18432.405077]  worker_thread+0x32/0x410
+[18432.410678]  kthread+0x121/0x140
+[18432.415361]  ? process_one_work+0x420/0x420
+[18432.421117]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18432.428104]  ret_from_fork+0x35/0x40
+[18432.433347] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18460.155695] watchdog: BUG: soft lockup - CPU#1 stuck for 23s! [kworker/1:1:50]
+[18460.164902] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18460.200781] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18460.211994] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18460.222308] Workqueue: events bpf_prog_free_deferred
+[18460.228888] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18460.235890] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18460.246573] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18460.255733] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18460.265525] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18460.274735] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18460.283585] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18460.293007] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18460.303314] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18460.310732] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18460.319355] Call Trace:
+[18460.322944]  ? x86_configure_nx+0x60/0x60
+[18460.328696]  ? default_send_IPI_single+0x3c/0x40
+[18460.334471]  smp_call_function_many+0x1cc/0x250
+[18460.340201]  ? smp_call_function_many+0x1cc/0x250
+[18460.346074]  ? x86_configure_nx+0x60/0x60
+[18460.351879]  on_each_cpu+0x2d/0x60
+[18460.356410]  flush_tlb_kernel_range+0x79/0x80
+[18460.362148]  ? cpumask_next+0x1b/0x20
+[18460.367212]  __purge_vmap_area_lazy+0x77/0x160
+[18460.373541]  vm_unmap_aliases+0xf9/0x130
+[18460.378812]  change_page_attr_set_clr+0xd5/0x3a0
+[18460.385214]  set_memory_rw+0x29/0x30
+[18460.390145]  bpf_jit_free+0x48/0xa0
+[18460.395736]  bpf_prog_free_deferred+0x26/0x30
+[18460.401552]  process_one_work+0x1de/0x420
+[18460.407157]  worker_thread+0x32/0x410
+[18460.412032]  kthread+0x121/0x140
+[18460.416675]  ? process_one_work+0x420/0x420
+[18460.421997]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18460.428407]  ret_from_fork+0x35/0x40
+[18460.433857] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18488.149038] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18488.159676] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18488.201045] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18488.214622] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18488.226310] Workqueue: events bpf_prog_free_deferred
+[18488.233827] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18488.241329] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18488.252738] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18488.262104] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18488.272540] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18488.284264] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18488.295681] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18488.307636] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18488.319204] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18488.327482] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18488.337291] Call Trace:
+[18488.340656]  ? x86_configure_nx+0x60/0x60
+[18488.346325]  ? default_send_IPI_single+0x3c/0x40
+[18488.353453]  smp_call_function_many+0x1cc/0x250
+[18488.359611]  ? smp_call_function_many+0x1cc/0x250
+[18488.366851]  ? x86_configure_nx+0x60/0x60
+[18488.372353]  on_each_cpu+0x2d/0x60
+[18488.377314]  flush_tlb_kernel_range+0x79/0x80
+[18488.383529]  ? cpumask_next+0x1b/0x20
+[18488.388867]  __purge_vmap_area_lazy+0x77/0x160
+[18488.395235]  vm_unmap_aliases+0xf9/0x130
+[18488.400862]  change_page_attr_set_clr+0xd5/0x3a0
+[18488.407497]  set_memory_rw+0x29/0x30
+[18488.412380]  bpf_jit_free+0x48/0xa0
+[18488.417625]  bpf_prog_free_deferred+0x26/0x30
+[18488.423909]  process_one_work+0x1de/0x420
+[18488.430013]  worker_thread+0x32/0x410
+[18488.435345]  kthread+0x121/0x140
+[18488.441023]  ? process_one_work+0x420/0x420
+[18488.448077]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18488.455894]  ret_from_fork+0x35/0x40
+[18488.461037] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18516.151619] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18516.161287] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18516.199033] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18516.211236] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18516.222249] Workqueue: events bpf_prog_free_deferred
+[18516.228772] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18516.235901] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18516.245727] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18516.254772] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18516.264544] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18516.273653] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18516.283121] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18516.292574] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18516.303188] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18516.310660] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18516.320309] Call Trace:
+[18516.324250]  ? x86_configure_nx+0x60/0x60
+[18516.329723]  ? default_send_IPI_single+0x3c/0x40
+[18516.335864]  smp_call_function_many+0x1cc/0x250
+[18516.341951]  ? smp_call_function_many+0x1cc/0x250
+[18516.348481]  ? x86_configure_nx+0x60/0x60
+[18516.354041]  on_each_cpu+0x2d/0x60
+[18516.358939]  flush_tlb_kernel_range+0x79/0x80
+[18516.364426]  ? cpumask_next+0x1b/0x20
+[18516.369604]  __purge_vmap_area_lazy+0x77/0x160
+[18516.375638]  vm_unmap_aliases+0xf9/0x130
+[18516.381037]  change_page_attr_set_clr+0xd5/0x3a0
+[18516.387348]  set_memory_rw+0x29/0x30
+[18516.392437]  bpf_jit_free+0x48/0xa0
+[18516.397101]  bpf_prog_free_deferred+0x26/0x30
+[18516.402637]  process_one_work+0x1de/0x420
+[18516.407767]  worker_thread+0x32/0x410
+[18516.412804]  kthread+0x121/0x140
+[18516.417085]  ? process_one_work+0x420/0x420
+[18516.422404]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18516.428755]  ret_from_fork+0x35/0x40
+[18516.433921] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18544.157147] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18544.166758] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18544.204256] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18544.216211] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18544.227190] Workqueue: events bpf_prog_free_deferred
+[18544.233784] RIP: 0010:smp_call_function_single+0xdf/0x100
+[18544.240840] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18544.252336] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18544.261937] RDX: 0000000000000003 RSI: 00000000000000fb RDI: 0000000000000286
+[18544.272394] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18544.281321] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18544.290529] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18544.299807] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18544.310499] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18544.318070] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18544.326968] Call Trace:
+[18544.330802]  ? x86_configure_nx+0x60/0x60
+[18544.336350]  ? default_send_IPI_single+0x3c/0x40
+[18544.342476]  smp_call_function_many+0x1cc/0x250
+[18544.348677]  ? smp_call_function_many+0x1cc/0x250
+[18544.355953]  ? x86_configure_nx+0x60/0x60
+[18544.361677]  on_each_cpu+0x2d/0x60
+[18544.366167]  flush_tlb_kernel_range+0x79/0x80
+[18544.372503]  ? cpumask_next+0x1b/0x20
+[18544.377256]  __purge_vmap_area_lazy+0x77/0x160
+[18544.383150]  vm_unmap_aliases+0xf9/0x130
+[18544.388668]  change_page_attr_set_clr+0xd5/0x3a0
+[18544.395398]  set_memory_rw+0x29/0x30
+[18544.400689]  bpf_jit_free+0x48/0xa0
+[18544.405273]  bpf_prog_free_deferred+0x26/0x30
+[18544.411241]  process_one_work+0x1de/0x420
+[18544.416910]  worker_thread+0x32/0x410
+[18544.421810]  kthread+0x121/0x140
+[18544.426279]  ? process_one_work+0x420/0x420
+[18544.433229]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18544.440373]  ret_from_fork+0x35/0x40
+[18544.445109] Code: 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 8b 55 c8 <83> e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 0b e9 7a 
+[18572.137696] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18572.147310] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18572.184708] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18572.196654] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18572.207223] Workqueue: events bpf_prog_free_deferred
+[18572.213800] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18572.220822] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18572.230587] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18572.239559] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18572.250194] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18572.259192] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18572.268669] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18572.279312] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18572.289842] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18572.297936] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18572.306946] Call Trace:
+[18572.310977]  ? x86_configure_nx+0x60/0x60
+[18572.316093]  ? default_send_IPI_single+0x3c/0x40
+[18572.322082]  smp_call_function_many+0x1cc/0x250
+[18572.327853]  ? smp_call_function_many+0x1cc/0x250
+[18572.334424]  ? x86_configure_nx+0x60/0x60
+[18572.339859]  on_each_cpu+0x2d/0x60
+[18572.344556]  flush_tlb_kernel_range+0x79/0x80
+[18572.350770]  ? cpumask_next+0x1b/0x20
+[18572.356259]  __purge_vmap_area_lazy+0x77/0x160
+[18572.362144]  vm_unmap_aliases+0xf9/0x130
+[18572.367406]  change_page_attr_set_clr+0xd5/0x3a0
+[18572.373286]  set_memory_rw+0x29/0x30
+[18572.378459]  bpf_jit_free+0x48/0xa0
+[18572.383035]  bpf_prog_free_deferred+0x26/0x30
+[18572.388908]  process_one_work+0x1de/0x420
+[18572.394932]  worker_thread+0x32/0x410
+[18572.400230]  kthread+0x121/0x140
+[18572.404594]  ? process_one_work+0x420/0x420
+[18572.410014]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18572.417136]  ret_from_fork+0x35/0x40
+[18572.421976] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18600.143799] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18600.153081] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18600.190411] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18600.202155] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18600.213172] Workqueue: events bpf_prog_free_deferred
+[18600.220160] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18600.231337] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18600.244003] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18600.257930] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18600.270125] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18600.283129] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18600.296096] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18600.310414] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18600.324419] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18600.335803] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18600.350941] Call Trace:
+[18600.356440]  ? x86_configure_nx+0x60/0x60
+[18600.365735]  ? default_send_IPI_single+0x3c/0x40
+[18600.375473]  smp_call_function_many+0x1cc/0x250
+[18600.385164]  ? smp_call_function_many+0x1cc/0x250
+[18600.391240]  ? x86_configure_nx+0x60/0x60
+[18600.396329]  on_each_cpu+0x2d/0x60
+[18600.400792]  flush_tlb_kernel_range+0x79/0x80
+[18600.407017]  ? cpumask_next+0x1b/0x20
+[18600.411906]  __purge_vmap_area_lazy+0x77/0x160
+[18600.417705]  vm_unmap_aliases+0xf9/0x130
+[18600.423328]  change_page_attr_set_clr+0xd5/0x3a0
+[18600.429429]  set_memory_rw+0x29/0x30
+[18600.434105]  bpf_jit_free+0x48/0xa0
+[18600.438596]  bpf_prog_free_deferred+0x26/0x30
+[18600.444484]  process_one_work+0x1de/0x420
+[18600.449772]  worker_thread+0x32/0x410
+[18600.454752]  kthread+0x121/0x140
+[18600.458992]  ? process_one_work+0x420/0x420
+[18600.464290]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18600.470967]  ret_from_fork+0x35/0x40
+[18600.475863] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
+[18628.146600] watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:1:50]
+[18628.157447] Modules linked in: iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi scsi_transport_spi psmouse mptscsih e1000 mptbase
+[18628.198112] CPU: 1 PID: 50 Comm: kworker/1:1 Tainted: G             L   4.15.0-162-generic #170-Ubuntu
+[18628.210554] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[18628.221606] Workqueue: events bpf_prog_free_deferred
+[18628.228915] RIP: 0010:smp_call_function_single+0xdc/0x100
+[18628.238163] RSP: 0018:ffffb63880377be0 EFLAGS: 00010202 ORIG_RAX: ffffffffffffff11
+[18628.250158] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+[18628.261239] RDX: 0000000000000001 RSI: 00000000000000fb RDI: 0000000000000286
+[18628.271564] RBP: ffffb63880377c30 R08: 0000000000000000 R09: 0000000000000003
+[18628.283548] R10: ffffb63880377c50 R11: ffffb63880377da8 R12: ffffffff9d8607a0
+[18628.294650] R13: 0000000000000001 R14: ffffffff9c27cd50 R15: ffffb63880377cc0
+[18628.305961] FS:  0000000000000000(0000) GS:ffff8c4c7fd00000(0000) knlGS:0000000000000000
+[18628.320280] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[18628.329829] CR2: 0000557fcc851318 CR3: 000000003840a005 CR4: 00000000000206e0
+[18628.341063] Call Trace:
+[18628.345434]  ? x86_configure_nx+0x60/0x60
+[18628.352221]  ? default_send_IPI_single+0x3c/0x40
+[18628.358475]  smp_call_function_many+0x1cc/0x250
+[18628.364965]  ? smp_call_function_many+0x1cc/0x250
+[18628.371514]  ? x86_configure_nx+0x60/0x60
+[18628.376975]  on_each_cpu+0x2d/0x60
+[18628.381532]  flush_tlb_kernel_range+0x79/0x80
+[18628.387618]  ? cpumask_next+0x1b/0x20
+[18628.393659]  __purge_vmap_area_lazy+0x77/0x160
+[18628.400409]  vm_unmap_aliases+0xf9/0x130
+[18628.406306]  change_page_attr_set_clr+0xd5/0x3a0
+[18628.412156]  set_memory_rw+0x29/0x30
+[18628.417028]  bpf_jit_free+0x48/0xa0
+[18628.422093]  bpf_prog_free_deferred+0x26/0x30
+[18628.428452]  process_one_work+0x1de/0x420
+[18628.433882]  worker_thread+0x32/0x410
+[18628.439319]  kthread+0x121/0x140
+[18628.443729]  ? process_one_work+0x420/0x420
+[18628.450937]  ? kthread_create_worker_on_cpu+0x70/0x70
+[18628.459196]  ret_from_fork+0x35/0x40
+[18628.464775] Code: 28 00 00 00 75 40 48 83 c4 48 41 5a 5d 49 8d 62 f8 c3 48 89 d1 48 89 f2 48 8d 75 b0 e8 1e fe ff ff 8b 55 c8 83 e2 01 74 0a f3 90 <8b> 55 c8 83 e2 01 75 f6 eb c2 8b 05 64 c4 83 01 85 c0 75 81 0f 
