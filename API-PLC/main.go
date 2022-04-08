@@ -13,7 +13,7 @@ import (
 func main() {
 	plc := controllerPlc.S7{
 		S7Connection: controllerPlc.S7Connection{
-			Addr:        "192.168.0.10",
+			Addr:        "181.142.60.73",
 			Rack:        0,
 			Slot:        2,
 			TimeOut:     200 * time.Second,

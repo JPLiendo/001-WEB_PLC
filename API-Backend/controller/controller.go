@@ -5,7 +5,7 @@ import (
 	"PLC-WEB/API-Backend/model"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -25,7 +25,10 @@ func GetDatos(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	db := dbConnection()
 	datos := base.ReadDatoS(&db)
-	fmt.Fprintln(w, datos)
+	err := json.NewEncoder(w).Encode(datos)
+	if err != nil {
+		log.Panic(err)
+	}
 
 }
 
@@ -37,43 +40,73 @@ func GetDato(w http.ResponseWriter, r *http.Request) {
 	id_int, _ := strconv.Atoi(vars["id"])
 	db := dbConnection()
 	dato := base.ReadDato(&db, id_int)
-	fmt.Fprintln(w, dato)
+	err := json.NewEncoder(w).Encode(dato)
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 // //CreateDato create a single of Dato.
 func CreateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	dato := model.SensorAnalogico{}
-	body, _ := ioutil.ReadAll(r.Body)
-	json.Unmarshal(body, &dato)
+
+	dato := model.SensoresAnalogicos{}
+	err := json.NewDecoder(r.Body).Decode(&dato)
+	if err != nil {
+		log.Panic(err)
+	}
 	db := dbConnection()
+
 	dato = base.CreateDato(&db, dato)
-	fmt.Fprintln(w, dato)
+	err = json.NewEncoder(w).Encode(dato)
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 // //UpdateDato update a sigle of Dato.
 func UpdateDato(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusAccepted)
+
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
-
-	dato := model.SensorAnalogico{}
-	body, _ := ioutil.ReadAll(r.Body)
-	json.Unmarshal(body, &dato)
+	dato := model.SensoresAnalogicos{}
 	db := dbConnection()
-	dato = base.UpdateteDato(&db, &dato, id_int)
-	fmt.Fprintln(w, &dato)
+	db.First(dato, id_int)
+
+	if dato.Id == id_int {
+		dato = base.UpdateteDato(&db, &dato, id_int)
+		err := json.NewEncoder(w).Encode(dato)
+		if err != nil {
+			log.Panic(err)
+		}
+	} else {
+		fmt.Fprintln(w, "El registro ID:", id_int, " no existe, su valor es: ", db.Error)
+	}
 }
 
 // //DeleteUsers delete a single of users
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusAccepted)
+
 	vars := mux.Vars(r)
 	id_int, _ := strconv.Atoi(vars["id"])
+
+	dato := model.SensoresAnalogicos{}
 	db := dbConnection()
-	dato := base.DeleteteDato(&db, id_int)
-	fmt.Fprintln(w, dato)
+	db.First(dato, id_int)
+
+	if dato.Id == id_int {
+		dato = base.DeleteteDato(&db, id_int)
+		err := json.NewEncoder(w).Encode(dato)
+		if err != nil {
+			log.Panic(err)
+		}
+	} else {
+		fmt.Fprintln(w, "El registro ID:", id_int, " no existe, su valor es: ", db.Error)
+	}
+
 }

@@ -59,7 +59,7 @@ func handlerConnection(s7 *S7Connection) *gos7.TCPClientHandler {
 }
 
 /*ClientReadDb lee un Db a partir de los parametros configurados en el tipo S7DataRead*/
-func (s7 *S7) ClientReadDb() *modelDataBase.SensoresAnologicos {
+func (s7 *S7) ClientReadDb() *modelDataBase.SensoresAnalogicos {
 	//Inicio la conexión con el PLC y difiero el cierre.
 	handler := handlerConnection(&s7.S7Connection)
 	err := handler.Connect()
@@ -74,19 +74,35 @@ func (s7 *S7) ClientReadDb() *modelDataBase.SensoresAnologicos {
 	if err != nil {
 		log.Panic("No se pudo leer el Db: ", s7.DbNumber, "\n", err)
 	}
+	//convierto los bytes a real y los guardo en el slice de sensores.
+	s7Helper := gos7.Helper{}
 
-	//Elijo los datos del Db a devolver.
-	var s7Helper gos7.Helper
-	sensoresAnologicos := modelDataBase.SensoresAnologicos{}
+	sensoresAnalogicos := modelDataBase.SensoresAnalogicos{}
+
 	indexBuffer := 0
-	for i := range s7.Buffer {
-		if i <= len(s7.Buffer) {
-			nuevoDato := sensoresAnologicos.ValorSensor[indexBuffer]
-			nuevoDato = s7Helper.GetLRealAt(s7.Buffer, indexBuffer)
-			sensoresAnologicos.ValorSensor = append(sensoresAnologicos.ValorSensor, nuevoDato)
-			indexBuffer = indexBuffer + 4
+	for i := 0; i <= (len(s7.Buffer)/4)-1; i++ {
+		sensorData := s7Helper.GetRealAt(s7.Buffer, indexBuffer)
+		switch i {
+		case 0:
+			sensoresAnalogicos.SensorAnalogico_1 = sensorData
+		case 1:
+			sensoresAnalogicos.SensorAnalogico_2 = sensorData
+		case 2:
+			sensoresAnalogicos.SensorAnalogico_3 = sensorData
+		case 3:
+			sensoresAnalogicos.SensorAnalogico_4 = sensorData
+		case 4:
+			sensoresAnalogicos.SensorAnalogico_5 = sensorData
+		case 5:
+			sensoresAnalogicos.SensorAnalogico_6 = sensorData
+		case 6:
+			sensoresAnalogicos.SensorAnalogico_7 = sensorData
+		case 7:
+			sensoresAnalogicos.SensorAnalogico_8 = sensorData
 		}
 
+		indexBuffer = indexBuffer + 4
 	}
-	return &sensoresAnologicos
+
+	return &sensoresAnalogicos
 }
