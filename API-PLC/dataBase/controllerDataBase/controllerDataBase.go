@@ -1,29 +1,88 @@
 package controllerDatabase
 
-import (
-	"PLC-WEB/API-PLC/dataBase/modelDataBase"
+import "gorm.io/gorm"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-)
-
-//Genero el schema de la BD a partir del modelo.
-var schema modelDataBase.SensoresAnalogicos
-
-/*ConnetDB devuelve el puntero de la conexión a la DB, es exportada para poder ser llamada desde main
-y generar una sola sesion, con esto se pueden realizar multiples consultas desde la misma sesión*/
-func ConnectDb() *gorm.DB {
-	dsn := "host=localhost user=postgres password=Delfina.0203 dbname=dbPlc port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic(`No se ha podido conectarse con la base de datos "dbPlc"`)
-	}
-	db.AutoMigrate(&schema)
-	return db
+// Type states.
+type states struct {
+	Running        bool
+	AlertStop      bool
+	FuncionalStop  bool
+	StopByFoward   bool
+	StopByBackward bool
+	UnderVelocity  bool
 }
 
-/*CreateRegister crea un nuevo registro en la DB*/
-func CreateRegister(db *gorm.DB, dato *modelDataBase.SensoresAnalogicos) *modelDataBase.SensoresAnalogicos {
-	db.Create(dato)
-	return dato
+//Type BlowerStates.
+type BlowerStates struct {
+	gorm.Model
+	States states
+}
+
+//Type FillerStates.
+type FillerStates struct {
+	gorm.Model
+	States states
+}
+
+//Type LabellerStates.
+type LabellerStates struct {
+	gorm.Model
+	States states
+}
+
+//Type PackerStates.
+type PackerStates struct {
+	gorm.Model
+	States states
+}
+
+//Type PalletizerStates.
+type PalletizerStates struct {
+	gorm.Model
+	States states
+}
+
+//Interface.
+type MachineState interface {
+	createRegister(*gorm.DB)
+}
+
+//Polymorphism method CreateRegister for type BlowerStates.
+func (f *BlowerStates) createRegister(db *gorm.DB) *gorm.DB {
+	newRegister := db.Create(f)
+	return newRegister
+
+}
+
+//Polymorphism method CreateRegister for type FillerStates.
+func (f *FillerStates) createRegister(db *gorm.DB) *gorm.DB {
+	newRegister := db.Create(f)
+	return newRegister
+
+}
+
+//Polymorphism method CreateRegister for type LabellerStates.
+func (f *LabellerStates) createRegister(db *gorm.DB) *gorm.DB {
+	newRegister := db.Create(f)
+	return newRegister
+
+}
+
+//Polymorphism method CreateRegister for type PackerStates.
+func (f *PackerStates) createRegister(db *gorm.DB) *gorm.DB {
+	newRegister := db.Create(f)
+	return newRegister
+
+}
+
+//Polymorphism method CreateRegister for type PalletizerStates.
+func (f *PalletizerStates) createRegister(db *gorm.DB) *gorm.DB {
+	newRegister := db.Create(f)
+	return newRegister
+
+}
+
+// CreateMachineRegister is the exported function to be used to write a new machine's register.
+func CreateMachineRegister(machineState MachineState, db *gorm.DB) {
+	machineState.createRegister(db)
 }
