@@ -1,7 +1,9 @@
 package controllerPlc
 
 import (
-	controllerDatabase "PLC-WEB/API-PLC/dataBase/controllerDataBase"
+	controllerDataBase "PLC-WEB/API-PLC/dataBase/controllerDatabase"
+	"fmt"
+
 	"log"
 	"time"
 
@@ -66,34 +68,41 @@ func (s7 *S7) clientReadDb() []byte {
 	if err := client.AGReadDB(s7.DbNumber, s7.Start, s7.Size, s7.Buffer); err != nil {
 		log.Panic("DB", s7.DbNumber, "couldn't be read", "\n", err)
 	}
+
 	return s7.Buffer
 
 }
 
 // ReadBoolByte exported function to be used to match boolean PLC data to DB schema.
-func ReadBoolByte(s7 *S7, machineStates *controllerDatabase.MachineStates) {
+func ReadBoolByte(s7 *S7, machineStates *controllerDataBase.MachineStates) *controllerDataBase.MachineStates {
 	bufferSlice := s7.clientReadDb()
 	bufferByte := bufferSlice[s7.Start]
 	helper := gos7.Helper{}
 	var indexBit uint
-
+	fmt.Println("***************MachineStates*******************")
 	for indexBit = 0; indexBit <= 5; indexBit++ {
 		state := helper.GetBoolAt(bufferByte, indexBit)
 		switch indexBit {
 		case 0:
 			machineStates.Running = state
+			fmt.Println("Running = ", machineStates.Running)
 		case 1:
 			machineStates.AlertStop = state
+			fmt.Println("AlertStop = ", machineStates.AlertStop)
 		case 2:
 			machineStates.FuncionalStop = state
+			fmt.Println("FuncionalStop = ", machineStates.FuncionalStop)
 		case 3:
 			machineStates.StopByFoward = state
+			fmt.Println("StopByFoward = ", machineStates.StopByFoward)
 		case 4:
 			machineStates.StopByBackward = state
+			fmt.Println("StopByBackward = ", machineStates.StopByBackward)
 		case 5:
-			machineStates.UnderVelocity = state
-
+			machineStates.UnderSpeed = state
+			fmt.Println("UnderSpeed = ", machineStates.UnderSpeed)
 		}
 
 	}
+	return machineStates
 }

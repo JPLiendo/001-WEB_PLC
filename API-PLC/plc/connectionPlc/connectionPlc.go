@@ -1,7 +1,7 @@
 package connectionPlc
 
 import (
-	controllerPlc "PLC-WEB/API-PLC/plc/controller.plc"
+	"PLC-WEB/API-PLC/plc/controllerPlc"
 	"time"
 )
 
