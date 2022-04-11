@@ -2,56 +2,57 @@ package base
 
 import (
 	"PLC-WEB/API-Backend/model"
+	"fmt"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var schema model.SensoresAnalogicos
+//DataBase stablishes the current database's connection.
+var dsn = "host=localhost user=postgres password=Delfina.0203 dbname=dbPlc port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+var ConnectDB = func() (db *gorm.DB) {
 
-func ConnectDb() *gorm.DB {
-	dsn := "host=localhost user=postgres password=Delfina.0203 dbname=dbPlc port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		panic(`Fail connection database "dbPlc"`)
+	} else {
+		fmt.Println(`"Succesfull conenction database "dbplc"`)
 	}
-	db.AutoMigrate(&schema)
 	return db
+}()
+
+//Migrate model to DB.
+func MigrateModel() {
+
+	ConnectDB.AutoMigrate(model.MachineStates{})
 }
 
-func ReadDatoS(db *gorm.DB) []model.SensoresAnalogicos {
-	datos := model.DatosSensor
-	db.Find(&datos, "true")
+func ReadDatoS() []model.MachineStates {
+	datos := model.Registers
+	ConnectDB.Find(&datos, "true")
 	return datos
 }
 
-func ReadDato(db *gorm.DB, id int) model.SensoresAnalogicos {
-	var dato model.SensoresAnalogicos
+func ReadDato(id int) model.MachineStates {
+	var dato model.MachineStates
 
-	db.First(&dato, id)
+	ConnectDB.First(&dato, id)
 	return dato
 }
 
-func CreateDato(db *gorm.DB, dato model.SensoresAnalogicos) model.SensoresAnalogicos {
+func CreateDato(dato model.MachineStates) model.MachineStates {
 
-	db.Create(&dato)
+	ConnectDB.Create(&dato)
 	return dato
 }
 
-func UpdateteDato(db *gorm.DB, dato *model.SensoresAnalogicos, id int) model.SensoresAnalogicos {
-	var datoAnt model.SensoresAnalogicos
-	datoAct := dato
-
-	db.First(&datoAnt, id)
-	datoAnt = *datoAct
-	db.Save(&datoAnt)
-	return datoAnt
+func UpdateteDato(dato *model.MachineStates) *model.MachineStates {
+	ConnectDB.Save(&dato)
+	return dato
 }
 
-func DeleteteDato(db *gorm.DB, id int) model.SensoresAnalogicos {
-	var dato model.SensoresAnalogicos
+func DeleteteDato(id int) *model.MachineStates {
 
-	db.First(&dato, id)
-	db.Delete(&model.DatosSensor, id)
-	return dato
+	ConnectDB.Delete(&model.Registers, id)
+	return &model.Registers[id]
 }
