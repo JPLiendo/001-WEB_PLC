@@ -1,25 +1,24 @@
 package main
 
 import (
-	controllerDatabase "PLC-WEB/API-PLC/database/controllerDataBase"
-	"PLC-WEB/API-PLC/plc/connectionPlc"
-	controllerPlc "PLC-WEB/API-PLC/plc/controller.plc"
-	"fmt"
+	connectionDatabase "PLC-WEB/API-PLC/dataBase/connectionDataBase"
+	controllerDatabase "PLC-WEB/API-PLC/dataBase/controllerDataBase"
+
+	"github.com/robfig/cron"
+	"gorm.io/gorm"
 )
 
 func main() {
-	fillerData := controllerDatabase.FillerStates{}
-	newRegister := controllerPlc.SaveReadDb(&connectionPlc.PLC, fillerData)
-	fmt.Println(newRegister)
-
+	var fillerstates = controllerDatabase.MachineStates{}
+	connectionDatabase.DataBase.AutoMigrate(fillerstates)
+	timeSample(&fillerstates, connectionDatabase.DataBase)
 }
 
-// //timeSample ejecuta la consulta a la DB en una frecuencia definida.
-// func timeSample(connectDb *gorm.DB, plc *controllerPlc.S7) {
-// 	newRegister:=
-// 	c := cron.New()
-// 	defer c.Stop()
-// 	c.AddFunc("@every 10s", func() { controllerDatabase.CreateMachineRegister() })
-// 	c.Start()
-// 	select {}
-// }
+//timeSample ejecuta la consulta a la DB en una frecuencia definida.
+func timeSample(machineStates *controllerDatabase.MachineStates, newRegister *gorm.DB) {
+	c := cron.New()
+	defer c.Stop()
+	c.AddFunc("@every 10s", func() { controllerDatabase.CreateMachineRegister(machineStates, newRegister) })
+	c.Start()
+	select {}
+}

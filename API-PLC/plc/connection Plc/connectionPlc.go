@@ -7,7 +7,7 @@ import (
 
 var PLC = controllerPlc.S7{
 	S7Connection: controllerPlc.S7Connection{
-		Addr:        "181.142.60.73",
+		Addr:        "192.168.0.10",
 		Rack:        0,
 		Slot:        2,
 		TimeOut:     200 * time.Second,

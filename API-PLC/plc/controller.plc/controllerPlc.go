@@ -1,6 +1,7 @@
 package controllerPlc
 
 import (
+	controllerDatabase "PLC-WEB/API-PLC/dataBase/controllerDataBase"
 	"log"
 	"time"
 
@@ -69,11 +70,30 @@ func (s7 *S7) clientReadDb() []byte {
 
 }
 
-// SaveReadDb exported function to be used to mach PLC data to DB schema.
-func SaveReadDb(s7 *S7, dataRegister interface{}) interface{} {
-	buffer := s7.clientReadDb()
+// ReadBoolByte exported function to be used to match boolean PLC data to DB schema.
+func ReadBoolByte(s7 *S7, machineStates *controllerDatabase.MachineStates) {
+	bufferSlice := s7.clientReadDb()
+	bufferByte := bufferSlice[s7.Start]
 	helper := gos7.Helper{}
-	helper.GetValueAt(buffer, s7.Start, dataRegister)
-	return dataRegister
+	var indexBit uint
 
+	for indexBit = 0; indexBit <= 5; indexBit++ {
+		state := helper.GetBoolAt(bufferByte, indexBit)
+		switch indexBit {
+		case 0:
+			machineStates.Running = state
+		case 1:
+			machineStates.AlertStop = state
+		case 2:
+			machineStates.FuncionalStop = state
+		case 3:
+			machineStates.StopByFoward = state
+		case 4:
+			machineStates.StopByBackward = state
+		case 5:
+			machineStates.UnderVelocity = state
+
+		}
+
+	}
 }
