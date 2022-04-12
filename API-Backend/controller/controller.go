@@ -10,63 +10,55 @@ import (
 	"net/http"
 )
 
-//GetDatos get a list of Datos
-func GetDatos(w http.ResponseWriter, r *http.Request) {
+//GetRegisters get a list of registers.
+func GetRegisters(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	datos := base.ReadDatoS()
-	err := json.NewEncoder(w).Encode(datos)
+	registers, _ := base.ReadRegisters()
+	err := json.NewEncoder(w).Encode(registers)
 	if err != nil {
 		log.Panic(err)
 	}
 
 }
 
-//GetDato get a single of Datos
-func GetDato(w http.ResponseWriter, r *http.Request) {
+//GetRegister get a single of registers.
+func GetRegister(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+
 	id := request.GetId(r)
-	dato := base.ReadDato(id)
-	err := json.NewEncoder(w).Encode(dato)
-	if err != nil {
-		log.Panic(err)
-	}
+	register, _ := base.ReadRegister(id)
+	response.Response(w, &register, id, http.StatusAccepted, http.StatusNotFound, "does not exist.")
 }
 
-// //CreateDato create a single of Dato.
-func CreateDato(w http.ResponseWriter, r *http.Request) {
+//CreateRegister create a single of register.
+func CreateRegister(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
 
-	dato := model.MachineStates{}
-	err := json.NewDecoder(r.Body).Decode(&dato)
+	register := model.MachineStates{}
+	err := json.NewDecoder(r.Body).Decode(&register)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	dato = base.CreateDato(dato)
-	err = json.NewEncoder(w).Encode(dato)
-	if err != nil {
-		log.Panic(err)
-	}
+	register, _ = base.CreateRegister(register)
+	response.Response(w, &register, register.Id, http.StatusCreated, http.StatusBadRequest, "already exist.")
 }
 
-// //UpdateDato update a sigle of Dato.
-func UpdateDato(w http.ResponseWriter, r *http.Request) {
-	// w.Header().Set("Content-Type", "application/json")
-	// w.WriteHeader(http.StatusAccepted)
+// // //UpdateDato update a sigle of Dato.
+// func UpdateDato(w http.ResponseWriter, r *http.Request) {
+// 	// w.Header().Set("Content-Type", "application/json")
+// 	// w.WriteHeader(http.StatusAccepted)
 
-	Id := request.GetId(r)
-	dato := base.ReadDato(Id)
+// 	Id := request.GetId(r)
+// 	dato := base.ReadDato(Id)
 
-	if dato.Id == Id {
-		dato = *request.GetBody(r)
-		base.UpdateteDato(&dato)
+// 	if dato.Id == Id {
+// 		dato = *request.GetBody(r)
+// 		base.UpdateteDato(&dato)
 
-	}
-	response.ResponseWr(w, &dato)
-}
+// 	}
+// 	response.ResponseWr(w, &dato)
+// }
 
 // //DeleteUsers delete a single of users
 // func DeleteUser(w http.ResponseWriter, r *http.Request) {
