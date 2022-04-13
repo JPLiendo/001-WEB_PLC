@@ -4,8 +4,8 @@ import (
 	"PLC-WEB/API-Backend/base"
 	"PLC-WEB/API-Backend/model"
 	"PLC-WEB/API-Backend/request"
-	"PLC-WEB/API-Backend/response"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -15,20 +15,31 @@ func GetRegisters(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	registers, _ := base.ReadRegisters()
-	err := json.NewEncoder(w).Encode(registers)
+	err := json.NewEncoder(w).Encode(&registers)
 	if err != nil {
 		log.Panic(err)
 	}
 
 }
 
-//GetRegister get a single of registers.
+//GetRegister get a single of register.
 func GetRegister(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	id := request.GetId(r)
-	register, _ := base.ReadRegister(id)
-	response.Response(w, &register, id, http.StatusAccepted, http.StatusNotFound, "does not exist.")
+	register, result := base.ReadRegister(id)
+
+	if register.Id == id {
+		w.WriteHeader(http.StatusOK)
+		err := json.NewEncoder(w).Encode(&register)
+		if err != nil {
+			log.Panic(err)
+		}
+	} else if result.RowsAffected == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintln(w, "Register ", id, "not Found")
+	}
+
 }
 
 //CreateRegister create a single of register.
@@ -40,46 +51,51 @@ func CreateRegister(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Panic(err)
 	}
-	register, _ = base.CreateRegister(register)
-	response.Response(w, &register, register.Id, http.StatusCreated, http.StatusBadRequest, "already exist.")
+	_, result := base.CreateRegister(&register)
+
+	if result.RowsAffected >= 1 {
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprintln(w, "Register ", register.Id, "created")
+	} else if result.RowsAffected == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Register ", register.Id, "not crated")
+
+	}
 }
 
-// // //UpdateDato update a sigle of Dato.
-// func UpdateDato(w http.ResponseWriter, r *http.Request) {
-// 	// w.Header().Set("Content-Type", "application/json")
-// 	// w.WriteHeader(http.StatusAccepted)
+// //UpdateRegister update a sigle of register.
+func UpdateRegister(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 
-// 	Id := request.GetId(r)
-// 	dato := base.ReadDato(Id)
+	register := model.MachineStates{}
+	err := json.NewDecoder(r.Body).Decode(&register)
+	if err != nil {
+		log.Panic(err)
+	}
+	_, result := base.UpdateRegister(&register, register.Id)
 
-// 	if dato.Id == Id {
-// 		dato = *request.GetBody(r)
-// 		base.UpdateteDato(&dato)
+	if result.RowsAffected >= 1 {
+		w.WriteHeader(http.StatusAccepted)
+		fmt.Fprintln(w, "Register ", register.Id, "updated")
+	} else if result.RowsAffected == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintln(w, "Register ", register.Id, "not found")
 
-// 	}
-// 	response.ResponseWr(w, &dato)
-// }
+	}
+}
 
-// //DeleteUsers delete a single of users
-// func DeleteUser(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json")
-// 	w.WriteHeader(http.StatusAccepted)
+//DeleteteRegister delete a single of register.
+func DeleteteRegister(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 
-// 	vars := mux.Vars(r)
-// 	id_int, _ := strconv.Atoi(vars["id"])
+	id := request.GetId(r)
+	_, result := base.DeleteteRegister(id)
 
-// 	dato := model.MachineStates{}
-
-// 	base.ConnectDB.First(dato, id_int)
-
-// 	if int(dato.Id) == id_int {
-// 		dato = base.DeleteteDato(id_int)
-// 		err := json.NewEncoder(w).Encode(dato)
-// 		if err != nil {
-// 			log.Panic(err)
-// 		}
-// 	} else {
-// 		fmt.Fprintln(w, "El registro ID:", id_int, " no existe, su valor es: ", base.ConnectDB.Error)
-// 	}
-
-// }
+	if result.RowsAffected >= 1 {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintln(w, "Register ", id, "deleted.")
+	} else if result.RowsAffected == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintln(w, "Register ", id, "not Found")
+	}
+}

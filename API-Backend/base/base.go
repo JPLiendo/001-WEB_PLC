@@ -28,33 +28,34 @@ func MigrateModel() {
 }
 
 func ReadRegisters() ([]model.MachineStates, *gorm.DB) {
-	registers := model.Registers
-	result := ConnectDB.Find(&registers, "true")
-	return registers, result
+	register := model.Registers
+	result := ConnectDB.Find(&register)
+	return register, result
 }
 
-func ReadRegister(id int) (model.MachineStates, *gorm.DB) {
+func ReadRegister(id int) (*model.MachineStates, *gorm.DB) {
 	var register model.MachineStates
+
 	result := ConnectDB.First(&register, id)
+	return &register, result
+}
+
+func CreateRegister(register *model.MachineStates) (*model.MachineStates, *gorm.DB) {
+
+	result := ConnectDB.Create(register)
 	return register, result
 }
 
-func CreateRegister(register model.MachineStates) (model.MachineStates, *gorm.DB) {
-	result := ConnectDB.First(&register, register.Id)
-	if result.RowsAffected != 0 {
-		result = ConnectDB.Create(&register)
-
-	}
+func UpdateRegister(register *model.MachineStates, id int) (*model.MachineStates, *gorm.DB) {
+	var oldRegister model.MachineStates
+	result := ConnectDB.First(&oldRegister, id)
+	oldRegister = *register
+	result = ConnectDB.Save(&oldRegister)
 	return register, result
 }
 
-// func UpdateteDato(dato *model.MachineStates) *model.MachineStates {
-// 	ConnectDB.Save(&dato)
-// 	return dato
-// }
-
-// func DeleteteDato(id int) *model.MachineStates {
-
-// 	ConnectDB.Delete(&model.Registers, id)
-// 	return &model.Registers[id]
-// }
+func DeleteteRegister(id int) (*model.MachineStates, *gorm.DB) {
+	var register model.MachineStates
+	result := ConnectDB.Delete(&register, id)
+	return &register, result
+}
