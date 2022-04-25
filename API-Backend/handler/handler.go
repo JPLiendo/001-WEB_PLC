@@ -1,8 +1,9 @@
 package handler
 
 import (
-	controller "PLC-WEB/API-Backend/controller"
 	"net/http"
+
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/controller"
 
 	"github.com/gorilla/mux"
 )

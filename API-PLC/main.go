@@ -1,12 +1,11 @@
 package main
 
 import (
-	connectionDatabase "PLC-WEB/API-PLC/dataBase/connectionDataBase"
-	controllerDataBase "PLC-WEB/API-PLC/dataBase/controllerDatabase"
+	connectionDatabase "github.com/JPLiendo/001-WEB_PLC/API-PLC/dataBase/connectionDataBase"
+	controllerDataBase "github.com/JPLiendo/001-WEB_PLC/API-PLC/dataBase/controllerDatabase"
 
-	"PLC-WEB/API-PLC/plc/connectionPlc"
-	"PLC-WEB/API-PLC/plc/controllerPlc"
-
+	"github.com/JPLiendo/001-WEB_PLC/API-PLC/plc/connectionPlc"
+	"github.com/JPLiendo/001-WEB_PLC/API-PLC/plc/controllerPlc"
 	"github.com/robfig/cron"
 	"gorm.io/gorm"
 )

@@ -1,13 +1,14 @@
 package controller
 
 import (
-	"PLC-WEB/API-Backend/base"
-	"PLC-WEB/API-Backend/model"
-	"PLC-WEB/API-Backend/request"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/base"
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/model"
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/request"
 )
 
 //GetRegisters get a list of registers.

@@ -1,8 +1,9 @@
 package controllerPlc
 
 import (
-	controllerDataBase "PLC-WEB/API-PLC/dataBase/controllerDatabase"
 	"fmt"
+
+	controllerDataBase "github.com/JPLiendo/001-WEB_PLC/API-PLC/dataBase/controllerDatabase"
 
 	"log"
 	"time"

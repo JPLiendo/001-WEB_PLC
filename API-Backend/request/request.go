@@ -1,10 +1,11 @@
 package request
 
 import (
-	"PLC-WEB/API-Backend/model"
 	"encoding/json"
 	"net/http"
 	"strconv"
+
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/model"
 
 	"github.com/gorilla/mux"
 )

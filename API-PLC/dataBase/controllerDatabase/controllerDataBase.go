@@ -1,8 +1,9 @@
 package controllerDataBase
 
 import (
-	connectionDatabase "PLC-WEB/API-PLC/dataBase/connectionDataBase"
 	"log"
+
+	connectionDatabase "github.com/JPLiendo/001-WEB_PLC/API-PLC/dataBase/connectionDataBase"
 
 	"gorm.io/gorm"
 )

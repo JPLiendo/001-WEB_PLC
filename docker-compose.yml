@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=dbPlc
+      - DATABASE_HOST=127.0.0.1
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "80:80"
+
+    environment:
+       PGADMIN_DEFAULT_EMAIL: "juanpablo.liendo@gmail.com"
+       PGADMIN_DEFAULT_PASSWORD: "12345"
+    depends_on:
+      - postgres
+
+  
+    
+

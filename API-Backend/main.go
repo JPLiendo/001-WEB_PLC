@@ -1,9 +1,9 @@
 package main
 
 import (
-	"PLC-WEB/API-Backend/base"
-	"PLC-WEB/API-Backend/handler"
-	"PLC-WEB/API-Backend/server"
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/base"
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/handler"
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/server"
 )
 
 func main() {

@@ -1,15 +1,16 @@
 package base
 
 import (
-	"PLC-WEB/API-Backend/model"
 	"fmt"
+
+	"github.com/JPLiendo/001-WEB_PLC/API-Backend/model"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 //DataBase stablishes the current database's connection.
-var dsn = "host=localhost user=postgres password=Delfina.0203 dbname=dbPlc port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+var dsn = "host=localhost user=postgres password=12345 dbname=dbPlc port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 var ConnectDB = func() (db *gorm.DB) {
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
