@@ -22,6 +22,17 @@ services:
        PGADMIN_DEFAULT_PASSWORD: "12345"
     depends_on:
       - postgres
+  backend:
+    image:  backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  plc:
+    image: plc
+    depends_on:
+      - postgres
+
 
   
     
